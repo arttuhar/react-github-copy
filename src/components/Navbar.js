@@ -32,9 +32,9 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: "center",
 	},
 	searchInput: {
-		height: "30px",
+		height: "28px",
 		border: "1px solid #797c7f",
-		width: "270px",
+		width: "300px",
 		borderRadius: "6px",
 		backgroundColor: "transparent",
 		"& ::-webkit-input-placeholder": {
@@ -42,8 +42,65 @@ const useStyles = makeStyles(theme => ({
 			fontSize: "14px",
 			letterSpacing: 0,
 			opacity: 1,
-			cursor: "auto",
 			paddingLeft: "12px",
+		},
+	},
+	searchList: {
+		paddingTop: "0",
+		paddingBottom: "0",
+	},
+	menuSearchInput: {
+		height: "28px",
+		backgroundColor: "#fafbfc",
+		paddingTop: 0,
+		width: "100%",
+		"& ::-webkit-input-placeholder": {
+			color: "#586069",
+			opacity: 1,
+			fontSize: "14px",
+			letterSpacing: 0,
+			paddingLeft: "12px",
+		},
+	},
+	menuSearchItem: {
+		fontSize: "14px",
+		paddingTop: "8px",
+		paddingBottom: "8px",
+		minHeight: "44px",
+		paddingRight: "0",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#036dd6",
+			color: "#fff",
+			"& $menuSearchIcon": {
+				color: "#fff",
+			},
+			"& $menuSearchButton": {
+				display: "flex",
+			},
+		},
+	},
+	menuSearchIcon: {
+		paddingRight: "12px",
+		color: "#586069",
+		fontSize: "16px",
+	},
+	menuSearchButton: {
+		height: "24px",
+		maxWidth: "76px",
+		marginLeft: "130px",
+		borderRadius: "6px",
+		textTransform: "none",
+		fontSize: "12px",
+		boxShadow: "none",
+		textAlign: "center",
+		backgroundColor: "#fafbfc",
+		border: "1px solid #e1e4e8",
+		color: "#586069",
+		display: "none",
+		"&:hover": {
+			boxShadow: "none",
+			backgroundColor: "#fafbfc",
 		},
 	},
 	navbarLinks: {
@@ -161,8 +218,17 @@ const useStyles = makeStyles(theme => ({
 
 function Navbar() {
 	const classes = useStyles();
+	const [anchorElSearch, setAnchorElSearch] = React.useState(null);
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+
+	const handleClickSearch = event => {
+		setAnchorElSearch(event.currentTarget);
+	};
+
+	const handleCloseSearch = () => {
+		setAnchorElSearch(null);
+	};
 
 	const handleClickNew = event => {
 		setAnchorElNew(event.currentTarget);
@@ -193,7 +259,131 @@ function Navbar() {
 							type="text"
 							disableUnderline={true}
 							placeholder="Search or jump to..."
+							aria-controls="searchMenu"
+							aria-haspopup="true"
+							onClick={handleClickSearch}
 						/>
+						<Menu
+							className={classes.menuSearchContainer}
+							id="searchMenu"
+							anchorEl={anchorElSearch}
+							transitionDuration={0}
+							keepMounted
+							autoFocus={false}
+							open={Boolean(anchorElSearch)}
+							onClose={handleCloseSearch}
+							classes={{ list: classes.searchList }}
+							PaperProps={{
+								style: {
+									backgroundColor: "#fff",
+									width: "300px",
+									borderRadius: "6px",
+									boxShadow: "0 8px 24px rgba(149, 157, 165, 0.2)",
+								},
+							}}
+						>
+							<Input
+								className={classes.menuSearchInput}
+								type="text"
+								disableUnderline={true}
+								placeholder="Search or jump to..."
+							/>
+							<Divider />
+							<MenuItem
+								className={classes.menuSearchItem}
+								disableRipple={true}
+								onClick={handleCloseSearch}
+							>
+								<Box className={classes.menuSearchIcon}>
+									<i class="far fa-bookmark"></i>
+								</Box>
+								Works
+								<Button
+									className={classes.menuSearchButton}
+									variant="contained"
+									disableRipple={true}
+								>
+									Jump to
+									<span>↵</span>
+								</Button>
+							</MenuItem>
+							<Divider />
+							<MenuItem
+								className={classes.menuSearchItem}
+								disableRipple={true}
+								onClick={handleCloseSearch}
+							>
+								<Box className={classes.menuSearchIcon}>
+									<i class="far fa-bookmark"></i>
+								</Box>
+								Works
+								<Button
+									className={classes.menuSearchButton}
+									variant="contained"
+									disableRipple={true}
+								>
+									Jump to
+									<span>↵</span>
+								</Button>
+							</MenuItem>
+							<Divider />
+							<MenuItem
+								className={classes.menuSearchItem}
+								disableRipple={true}
+								onClick={handleCloseSearch}
+							>
+								<Box className={classes.menuSearchIcon}>
+									<i class="far fa-bookmark"></i>
+								</Box>
+								Works
+								<Button
+									className={classes.menuSearchButton}
+									variant="contained"
+									disableRipple={true}
+								>
+									Jump to
+									<span>↵</span>
+								</Button>
+							</MenuItem>
+							<Divider />
+							<MenuItem
+								className={classes.menuSearchItem}
+								disableRipple={true}
+								onClick={handleCloseSearch}
+							>
+								<Box className={classes.menuSearchIcon}>
+									<i class="far fa-bookmark"></i>
+								</Box>
+								Works
+								<Button
+									className={classes.menuSearchButton}
+									variant="contained"
+									disableRipple={true}
+								>
+									Jump to
+									<span>↵</span>
+								</Button>
+							</MenuItem>
+							<Divider />
+							<MenuItem
+								className={classes.menuSearchItem}
+								disableRipple={true}
+								onClick={handleCloseSearch}
+							>
+								<Box className={classes.menuSearchIcon}>
+									<i class="far fa-bookmark"></i>
+								</Box>
+								Works
+								<Button
+									className={classes.menuSearchButton}
+									variant="contained"
+									disableRipple={true}
+								>
+									Jump to
+									<span>↵</span>
+								</Button>
+							</MenuItem>
+						</Menu>
 					</Box>
 					<Box className={classes.navbarLinks}>
 						<Link to="/" underline="none" className={classes.linksItem}>
