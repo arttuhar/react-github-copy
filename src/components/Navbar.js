@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
 	navbarContainer: {
@@ -63,7 +64,6 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	menuSearchItem: {
-		fontSize: "14px",
 		paddingTop: "8px",
 		paddingBottom: "8px",
 		minHeight: "44px",
@@ -85,10 +85,14 @@ const useStyles = makeStyles(theme => ({
 		color: "#586069",
 		fontSize: "16px",
 	},
+	searchText: {
+		flex: 1,
+		fontSize: "14px",
+	},
 	menuSearchButton: {
 		height: "24px",
 		maxWidth: "76px",
-		marginLeft: "130px",
+		marginRight: "8px",
 		borderRadius: "6px",
 		textTransform: "none",
 		fontSize: "12px",
@@ -297,7 +301,9 @@ function Navbar() {
 								<Box className={classes.menuSearchIcon}>
 									<i class="far fa-bookmark"></i>
 								</Box>
-								Works
+								<Typography className={classes.searchText}>
+									username/repository
+								</Typography>
 								<Button
 									className={classes.menuSearchButton}
 									variant="contained"
@@ -316,7 +322,9 @@ function Navbar() {
 								<Box className={classes.menuSearchIcon}>
 									<i class="far fa-bookmark"></i>
 								</Box>
-								Works
+								<Typography className={classes.searchText}>
+									username/repository
+								</Typography>
 								<Button
 									className={classes.menuSearchButton}
 									variant="contained"
@@ -335,7 +343,9 @@ function Navbar() {
 								<Box className={classes.menuSearchIcon}>
 									<i class="far fa-bookmark"></i>
 								</Box>
-								Works
+								<Typography className={classes.searchText}>
+									username/repository
+								</Typography>
 								<Button
 									className={classes.menuSearchButton}
 									variant="contained"
@@ -354,7 +364,9 @@ function Navbar() {
 								<Box className={classes.menuSearchIcon}>
 									<i class="far fa-bookmark"></i>
 								</Box>
-								Works
+								<Typography className={classes.searchText}>
+									username/repository
+								</Typography>
 								<Button
 									className={classes.menuSearchButton}
 									variant="contained"
@@ -373,7 +385,9 @@ function Navbar() {
 								<Box className={classes.menuSearchIcon}>
 									<i class="far fa-bookmark"></i>
 								</Box>
-								Works
+								<Typography className={classes.searchText}>
+									username/repository
+								</Typography>
 								<Button
 									className={classes.menuSearchButton}
 									variant="contained"
