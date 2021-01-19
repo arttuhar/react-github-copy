@@ -18,6 +18,24 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: "center",
 		fontFamily: "sans-serif",
 		boxShadow: "none",
+		[theme.breakpoints.down(768)]: {
+			display: "flex",
+		},
+	},
+	navbarMenuMobile: {
+		display: "none",
+		marginLeft: "-28px",
+		[theme.breakpoints.down(768)]: {
+			display: "flex",
+			flex: 1,
+		},
+	},
+	menuMobileIcon: {
+		color: "#fff",
+		fontSize: "24px",
+		"&:hover": {
+			color: "#cccdce",
+		},
 	},
 	navbarIcon: {
 		color: "#fff",
@@ -27,15 +45,26 @@ const useStyles = makeStyles(theme => ({
 		"&:hover": {
 			color: "#cccdce",
 		},
+		[theme.breakpoints.down(768)]: {
+			marginLeft: "28px",
+		},
+	},
+	empty: {
+		[theme.breakpoints.down(768)]: {
+			flex: 1,
+		},
 	},
 	navbarSearch: {
 		paddingLeft: "1rem",
 		justifyContent: "center",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
 	},
 	searchInput: {
 		height: "28px",
 		border: "1px solid #797c7f",
-		width: "300px",
+		width: "270px",
 		borderRadius: "6px",
 		backgroundColor: "transparent",
 		"& ::-webkit-input-placeholder": {
@@ -109,6 +138,9 @@ const useStyles = makeStyles(theme => ({
 	},
 	navbarLinks: {
 		flex: 1,
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
 	},
 	linksItem: {
 		paddingLeft: "1rem",
@@ -122,6 +154,9 @@ const useStyles = makeStyles(theme => ({
 	navbarMenuNew: {
 		width: "40px",
 		marginRight: "5px",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
 	},
 	menuNewButton: {
 		color: "#fff",
@@ -149,6 +184,9 @@ const useStyles = makeStyles(theme => ({
 	navbarMenuProfile: {
 		width: "45px",
 		marginRight: "5px",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
 	},
 	menuProfileButton: {
 		cursor: "pointer",
@@ -254,9 +292,17 @@ function Navbar() {
 		<React.Fragment>
 			<AppBar className={classes.navbarContainer}>
 				<Toolbar>
+					<Box className={classes.navbarMenuMobile}>
+						<Button disableRipple={true}>
+							<Box className={classes.menuMobileIcon}>
+								<i class="fas fa-bars"></i>
+							</Box>
+						</Button>
+					</Box>
 					<Link to="/" className={classes.navbarIcon}>
 						<i class="fab fa-github"></i>
 					</Link>
+					<Box className={classes.empty}></Box>
 					<Box className={classes.navbarSearch}>
 						<Input
 							className={classes.searchInput}
@@ -280,8 +326,9 @@ function Navbar() {
 							PaperProps={{
 								style: {
 									backgroundColor: "#fff",
-									width: "300px",
+									width: "270px",
 									borderRadius: "6px",
+									border: "1px solid #cccdce",
 									boxShadow: "0 8px 24px rgba(149, 157, 165, 0.2)",
 								},
 							}}
@@ -433,7 +480,7 @@ function Navbar() {
 							transitionDuration={0}
 							keepMounted
 							open={Boolean(anchorElNew)}
-							onClose={handleCloseNew}
+							/*onClose={handleCloseNew}*/
 							PaperProps={{
 								style: {
 									backgroundColor: "#fff",
