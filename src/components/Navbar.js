@@ -263,7 +263,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	mobileList: {
 		paddingTop: "4px",
-		paddingBottom: "18px",
+		paddingBottom: "14px",
 	},
 	mobileMenuItem: {
 		color: "#fff",
@@ -303,6 +303,7 @@ const useStyles = makeStyles(theme => ({
 	mobileIcon: {
 		fontSize: "16px",
 		paddingRight: "4px",
+		marginLeft: "4px",
 	},
 	mobileText: {
 		fontSize: "14px",
@@ -314,6 +315,71 @@ const useStyles = makeStyles(theme => ({
 		borderRadius: "50%",
 		marginRight: "4px",
 	},
+	menuMobileSearchContainer: {
+		[theme.breakpoints.up(768)]: {
+			display: "none",
+		},
+	},
+	mobileListSearch: {
+		paddingTop: "0",
+		paddingBottom: "0",
+	},
+	menuMobileSearchActive: {
+		backgroundColor: "#fafbfc",
+		height: "28px",
+		width: "100%",
+		paddingLeft: "12px",
+		"& ::-webkit-input-placeholder": {
+			color: "#586069",
+			opacity: 1,
+			fontSize: "14px",
+			letterSpacing: 0,
+		},
+	},
+	menuMobileSearchItem: {
+		paddingTop: "8px",
+		paddingBottom: "8px",
+		minHeight: "44px",
+		paddingRight: "0",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#036dd6",
+			color: "#fff",
+			"& $menuMobileSearchIcon": {
+				color: "#fff",
+			},
+			"& $mobileSearchButton": {
+				display: "flex",
+			},
+		},
+	},
+	menuMobileSearchIcon: {
+		paddingRight: "12px",
+		color: "#586069",
+		fontSize: "16px",
+	},
+	mobileSearchText: {
+		flex: 1,
+		fontSize: "14px",
+	},
+	mobileSearchButton: {
+		height: "24px",
+		maxWidth: "76px",
+		marginRight: "8px",
+		borderRadius: "6px",
+		textTransform: "none",
+		fontSize: "12px",
+		boxShadow: "none",
+		textAlign: "center",
+		backgroundColor: "#fafbfc",
+		border: "1px solid #e1e4e8",
+		color: "#586069",
+		display: "none",
+		"&:hover": {
+			boxShadow: "none",
+			backgroundColor: "#fafbfc",
+		},
+	},
 }));
 
 function Navbar() {
@@ -322,6 +388,15 @@ function Navbar() {
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
 	const [anchorElMobile, setAnchorElMobile] = React.useState(null);
+	const [anchorElMobileSearch, setAnchorElMobileSearch] = React.useState(null);
+
+	const handleClickMobileSearch = event => {
+		setAnchorElMobileSearch(event.currentTarget);
+	};
+
+	const handleCloseMobileSearch = () => {
+		setAnchorElMobileSearch(null);
+	};
 
 	const handleClickMobile = event => {
 		setAnchorElMobile(event.currentTarget);
@@ -397,7 +472,140 @@ function Navbar() {
 									type="text"
 									disableUnderline={true}
 									placeholder="Search or jump to..."
+									aria-controls="mobileMenuSearch"
+									aria-haspopup="true"
+									onClick={handleClickMobileSearch}
 								/>
+								<Menu
+									className={classes.menuMobileSearchContainer}
+									id="mobileMenuSearch"
+									anchorEl={anchorElMobileSearch}
+									transitionDuration={0}
+									keepMounted
+									open={Boolean(anchorElMobileSearch)}
+									classes={{ list: classes.mobileListSearch }}
+									onClose={handleCloseMobileSearch}
+									PaperProps={{
+										style: {
+											width: "100%",
+											borderRadius: "6px",
+											border: "1px solid #cccdce",
+											boxShadow: "0 8px 24px rgba(149, 157, 165, 0.2)",
+										},
+									}}
+								>
+									<Input
+										className={classes.menuMobileSearchActive}
+										type="text"
+										disableUnderline={true}
+										placeholder="Search or jump to..."
+									/>
+									<Divider />
+									<MenuItem
+										className={classes.menuMobileSearchItem}
+										disableRipple={true}
+										onClick={handleCloseMobileSearch}
+									>
+										<Box className={classes.menuMobileSearchIcon}>
+											<i class="far fa-bookmark"></i>
+										</Box>
+										<Typography className={classes.mobileSearchText}>
+											username/repository
+										</Typography>
+										<Button
+											className={classes.mobileSearchButton}
+											variant="contained"
+											disableRipple={true}
+										>
+											Jump to
+											<span>↵</span>
+										</Button>
+									</MenuItem>
+									<Divider />
+									<MenuItem
+										className={classes.menuMobileSearchItem}
+										disableRipple={true}
+										onClick={handleCloseMobileSearch}
+									>
+										<Box className={classes.menuMobileSearchIcon}>
+											<i class="far fa-bookmark"></i>
+										</Box>
+										<Typography className={classes.mobileSearchText}>
+											username/repository
+										</Typography>
+										<Button
+											className={classes.mobileSearchButton}
+											variant="contained"
+											disableRipple={true}
+										>
+											Jump to
+											<span>↵</span>
+										</Button>
+									</MenuItem>
+									<Divider />
+									<MenuItem
+										className={classes.menuMobileSearchItem}
+										disableRipple={true}
+										onClick={handleCloseMobileSearch}
+									>
+										<Box className={classes.menuMobileSearchIcon}>
+											<i class="far fa-bookmark"></i>
+										</Box>
+										<Typography className={classes.mobileSearchText}>
+											username/repository
+										</Typography>
+										<Button
+											className={classes.mobileSearchButton}
+											variant="contained"
+											disableRipple={true}
+										>
+											Jump to
+											<span>↵</span>
+										</Button>
+									</MenuItem>
+									<Divider />
+									<MenuItem
+										className={classes.menuMobileSearchItem}
+										disableRipple={true}
+										onClick={handleCloseMobileSearch}
+									>
+										<Box className={classes.menuMobileSearchIcon}>
+											<i class="far fa-bookmark"></i>
+										</Box>
+										<Typography className={classes.mobileSearchText}>
+											username/repository
+										</Typography>
+										<Button
+											className={classes.mobileSearchButton}
+											variant="contained"
+											disableRipple={true}
+										>
+											Jump to
+											<span>↵</span>
+										</Button>
+									</MenuItem>
+									<Divider />
+									<MenuItem
+										className={classes.menuMobileSearchItem}
+										disableRipple={true}
+										onClick={handleCloseMobileSearch}
+									>
+										<Box className={classes.menuMobileSearchIcon}>
+											<i class="far fa-bookmark"></i>
+										</Box>
+										<Typography className={classes.mobileSearchText}>
+											username/repository
+										</Typography>
+										<Button
+											className={classes.mobileSearchButton}
+											variant="contained"
+											disableRipple={true}
+										>
+											Jump to
+											<span>↵</span>
+										</Button>
+									</MenuItem>
+								</Menu>
 							</Box>
 							<Divider className={classes.mobileMenuDivider} />
 							<MenuItem
