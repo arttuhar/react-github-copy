@@ -84,12 +84,12 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: "#fafbfc",
 		paddingTop: 0,
 		width: "100%",
+		paddingLeft: "12px",
 		"& ::-webkit-input-placeholder": {
 			color: "#586069",
 			opacity: 1,
 			fontSize: "14px",
 			letterSpacing: 0,
-			paddingLeft: "12px",
 		},
 	},
 	menuSearchItem: {
@@ -256,6 +256,64 @@ const useStyles = makeStyles(theme => ({
 	profileItemsSecondary: {
 		marginTop: "8px",
 	},
+	menuMobileContainer: {
+		[theme.breakpoints.up(768)]: {
+			display: "none",
+		},
+	},
+	mobileList: {
+		paddingTop: "4px",
+		paddingBottom: "18px",
+	},
+	mobileMenuItem: {
+		color: "#fff",
+		fontWeight: "bold",
+		letterSpacing: 0,
+		fontSize: "14px",
+		paddingTop: "8px",
+		paddingBottom: "8px",
+		"&:hover": {
+			color: "#cccdce",
+			backgroundColor: "transparent",
+		},
+	},
+	mobileMenuDivider: {
+		backgroundColor: "#586069",
+		marginLeft: "16px",
+		marginRight: "16px",
+	},
+	menuMobileSearch: {
+		marginLeft: "16px",
+		marginRight: "16px",
+		paddingBottom: "16px",
+	},
+	menuMobileSearchInput: {
+		border: "1px solid #586069",
+		borderRadius: "6px",
+		height: "28px",
+		width: "100%",
+		paddingLeft: "12px",
+		"& ::-webkit-input-placeholder": {
+			color: "#cccdce",
+			opacity: 1,
+			fontSize: "14px",
+			letterSpacing: 0,
+		},
+	},
+	mobileIcon: {
+		fontSize: "16px",
+		paddingRight: "4px",
+	},
+	mobileText: {
+		fontSize: "14px",
+		fontWeight: "bold",
+	},
+	mobileAvatar: {
+		width: "20px",
+		height: "20px",
+		borderRadius: "50%",
+		marginRight: "4px",
+	},
 }));
 
 function Navbar() {
@@ -263,6 +321,15 @@ function Navbar() {
 	const [anchorElSearch, setAnchorElSearch] = React.useState(null);
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+	const [anchorElMobile, setAnchorElMobile] = React.useState(null);
+
+	const handleClickMobile = event => {
+		setAnchorElMobile(event.currentTarget);
+	};
+
+	const handleCloseMobile = () => {
+		setAnchorElMobile(null);
+	};
 
 	const handleClickSearch = event => {
 		setAnchorElSearch(event.currentTarget);
@@ -293,11 +360,118 @@ function Navbar() {
 			<AppBar className={classes.navbarContainer}>
 				<Toolbar>
 					<Box className={classes.navbarMenuMobile}>
-						<Button disableRipple={true}>
+						<Button
+							disableRipple={true}
+							aria-controls="mobileMenu"
+							aria-haspopup="true"
+							onClick={handleClickMobile}
+						>
 							<Box className={classes.menuMobileIcon}>
 								<i class="fas fa-bars"></i>
 							</Box>
 						</Button>
+						<Menu
+							className={classes.menuMobileContainer}
+							id="mobileMenu"
+							anchorEl={anchorElMobile}
+							transitionDuration={0}
+							keepMounted
+							open={Boolean(anchorElMobile)}
+							classes={{ list: classes.mobileList }}
+							onClose={handleCloseMobile}
+							PaperProps={{
+								style: {
+									backgroundColor: "#242a2d",
+									width: "100%",
+									maxWidth: "unset",
+									marginTop: "44px",
+									boxShadow: "none",
+									borderRadius: 0,
+									marginLeft: "-16px",
+								},
+							}}
+						>
+							<Box className={classes.menuMobileSearch}>
+								<Input
+									className={classes.menuMobileSearchInput}
+									type="text"
+									disableUnderline={true}
+									placeholder="Search or jump to..."
+								/>
+							</Box>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								Dashboard
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								Pull requests
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								Issues
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								Marketplace
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								Explore
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								Settings
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								<img
+									src="/images/avatar.png"
+									alt="avatar"
+									className={classes.mobileAvatar}
+								/>
+								username
+							</MenuItem>
+							<Divider className={classes.mobileMenuDivider} />
+							<MenuItem
+								className={classes.mobileMenuItem}
+								disableRipple={true}
+								onClick={handleCloseMobile}
+							>
+								<Box className={classes.mobileIcon}>
+									<i class="fas fa-sign-out-alt"></i>
+								</Box>
+								<Typography className={classes.mobileText}>Sign out</Typography>
+							</MenuItem>
+						</Menu>
 					</Box>
 					<Link to="/" className={classes.navbarIcon}>
 						<i class="fab fa-github"></i>
@@ -480,7 +654,7 @@ function Navbar() {
 							transitionDuration={0}
 							keepMounted
 							open={Boolean(anchorElNew)}
-							/*onClose={handleCloseNew}*/
+							onClose={handleCloseNew}
 							PaperProps={{
 								style: {
 									backgroundColor: "#fff",
