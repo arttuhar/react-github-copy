@@ -12,6 +12,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
+	// Navigation bar
 	navbarContainer: {
 		backgroundColor: "#242a2d",
 		height: "60px",
@@ -22,6 +23,8 @@ const useStyles = makeStyles(theme => ({
 			display: "flex",
 		},
 	},
+
+	// Mobile size menu
 	navbarMenuMobile: {
 		display: "none",
 		marginLeft: "-28px",
@@ -37,6 +40,132 @@ const useStyles = makeStyles(theme => ({
 			color: "#cccdce",
 		},
 	},
+	menuMobileContainer: {
+		[theme.breakpoints.up(768)]: {
+			display: "none",
+		},
+	},
+	mobileList: {
+		paddingTop: "4px",
+		paddingBottom: "14px",
+	},
+	menuMobileSearch: {
+		marginLeft: "16px",
+		marginRight: "16px",
+		paddingBottom: "16px",
+	},
+	menuMobileSearchInput: {
+		border: "1px solid #586069",
+		borderRadius: "6px",
+		height: "28px",
+		width: "100%",
+		paddingLeft: "12px",
+		"& ::-webkit-input-placeholder": {
+			color: "#cccdce",
+			opacity: 1,
+			fontSize: "14px",
+			letterSpacing: 0,
+		},
+	},
+	menuMobileSearchContainer: {
+		[theme.breakpoints.up(768)]: {
+			display: "none",
+		},
+	},
+	mobileListSearch: {
+		paddingTop: "0",
+		paddingBottom: "0",
+	},
+	menuMobileSearchActive: {
+		backgroundColor: "#fafbfc",
+		height: "28px",
+		width: "100%",
+		paddingLeft: "12px",
+		"& ::-webkit-input-placeholder": {
+			color: "#586069",
+			opacity: 1,
+			fontSize: "14px",
+			letterSpacing: 0,
+		},
+	},
+	menuMobileSearchItem: {
+		paddingTop: "8px",
+		paddingBottom: "8px",
+		minHeight: "44px",
+		paddingRight: "0",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#036dd6",
+			color: "#fff",
+			"& $menuMobileSearchIcon": {
+				color: "#fff",
+			},
+			"& $mobileSearchButton": {
+				display: "flex",
+			},
+		},
+	},
+	menuMobileSearchIcon: {
+		paddingRight: "12px",
+		color: "#586069",
+		fontSize: "16px",
+	},
+	mobileSearchText: {
+		flex: 1,
+		fontSize: "14px",
+	},
+	mobileSearchButton: {
+		height: "24px",
+		maxWidth: "76px",
+		marginRight: "8px",
+		borderRadius: "6px",
+		textTransform: "none",
+		fontSize: "12px",
+		boxShadow: "none",
+		textAlign: "center",
+		backgroundColor: "#fafbfc",
+		border: "1px solid #e1e4e8",
+		color: "#586069",
+		display: "none",
+		"&:hover": {
+			boxShadow: "none",
+			backgroundColor: "#fafbfc",
+		},
+	},
+	mobileMenuItem: {
+		color: "#fff",
+		fontWeight: "bold",
+		letterSpacing: 0,
+		fontSize: "14px",
+		paddingTop: "8px",
+		paddingBottom: "8px",
+		"&:hover": {
+			color: "#cccdce",
+			backgroundColor: "transparent",
+		},
+	},
+	mobileMenuDivider: {
+		backgroundColor: "#586069",
+		marginLeft: "16px",
+		marginRight: "16px",
+	},
+	mobileIcon: {
+		fontSize: "16px",
+		paddingRight: "4px",
+		marginLeft: "4px",
+	},
+	mobileText: {
+		fontSize: "14px",
+		fontWeight: "bold",
+	},
+	mobileAvatar: {
+		width: "20px",
+		height: "20px",
+		borderRadius: "50%",
+		marginRight: "4px",
+	},
+
+	// Logo
 	navbarIcon: {
 		color: "#fff",
 		fontSize: "2.1rem",
@@ -54,6 +183,8 @@ const useStyles = makeStyles(theme => ({
 			flex: 1,
 		},
 	},
+
+	// Navigation bar search input
 	navbarSearch: {
 		paddingLeft: "1rem",
 		justifyContent: "center",
@@ -136,6 +267,8 @@ const useStyles = makeStyles(theme => ({
 			backgroundColor: "#fafbfc",
 		},
 	},
+
+	//Navigation bar links
 	navbarLinks: {
 		flex: 1,
 		[theme.breakpoints.down(768)]: {
@@ -151,6 +284,8 @@ const useStyles = makeStyles(theme => ({
 			color: "#cccdce",
 		},
 	},
+
+	// Navigation bar new/+ menu
 	navbarMenuNew: {
 		width: "40px",
 		marginRight: "5px",
@@ -181,6 +316,8 @@ const useStyles = makeStyles(theme => ({
 			color: "#fff",
 		},
 	},
+
+	// Navigation bar profile menu
 	navbarMenuProfile: {
 		width: "45px",
 		marginRight: "5px",
@@ -256,148 +393,17 @@ const useStyles = makeStyles(theme => ({
 	profileItemsSecondary: {
 		marginTop: "8px",
 	},
-	menuMobileContainer: {
-		[theme.breakpoints.up(768)]: {
-			display: "none",
-		},
-	},
-	mobileList: {
-		paddingTop: "4px",
-		paddingBottom: "14px",
-	},
-	mobileMenuItem: {
-		color: "#fff",
-		fontWeight: "bold",
-		letterSpacing: 0,
-		fontSize: "14px",
-		paddingTop: "8px",
-		paddingBottom: "8px",
-		"&:hover": {
-			color: "#cccdce",
-			backgroundColor: "transparent",
-		},
-	},
-	mobileMenuDivider: {
-		backgroundColor: "#586069",
-		marginLeft: "16px",
-		marginRight: "16px",
-	},
-	menuMobileSearch: {
-		marginLeft: "16px",
-		marginRight: "16px",
-		paddingBottom: "16px",
-	},
-	menuMobileSearchInput: {
-		border: "1px solid #586069",
-		borderRadius: "6px",
-		height: "28px",
-		width: "100%",
-		paddingLeft: "12px",
-		"& ::-webkit-input-placeholder": {
-			color: "#cccdce",
-			opacity: 1,
-			fontSize: "14px",
-			letterSpacing: 0,
-		},
-	},
-	mobileIcon: {
-		fontSize: "16px",
-		paddingRight: "4px",
-		marginLeft: "4px",
-	},
-	mobileText: {
-		fontSize: "14px",
-		fontWeight: "bold",
-	},
-	mobileAvatar: {
-		width: "20px",
-		height: "20px",
-		borderRadius: "50%",
-		marginRight: "4px",
-	},
-	menuMobileSearchContainer: {
-		[theme.breakpoints.up(768)]: {
-			display: "none",
-		},
-	},
-	mobileListSearch: {
-		paddingTop: "0",
-		paddingBottom: "0",
-	},
-	menuMobileSearchActive: {
-		backgroundColor: "#fafbfc",
-		height: "28px",
-		width: "100%",
-		paddingLeft: "12px",
-		"& ::-webkit-input-placeholder": {
-			color: "#586069",
-			opacity: 1,
-			fontSize: "14px",
-			letterSpacing: 0,
-		},
-	},
-	menuMobileSearchItem: {
-		paddingTop: "8px",
-		paddingBottom: "8px",
-		minHeight: "44px",
-		paddingRight: "0",
-		transition: "none",
-		"&:hover": {
-			backgroundColor: "#036dd6",
-			color: "#fff",
-			"& $menuMobileSearchIcon": {
-				color: "#fff",
-			},
-			"& $mobileSearchButton": {
-				display: "flex",
-			},
-		},
-	},
-	menuMobileSearchIcon: {
-		paddingRight: "12px",
-		color: "#586069",
-		fontSize: "16px",
-	},
-	mobileSearchText: {
-		flex: 1,
-		fontSize: "14px",
-	},
-	mobileSearchButton: {
-		height: "24px",
-		maxWidth: "76px",
-		marginRight: "8px",
-		borderRadius: "6px",
-		textTransform: "none",
-		fontSize: "12px",
-		boxShadow: "none",
-		textAlign: "center",
-		backgroundColor: "#fafbfc",
-		border: "1px solid #e1e4e8",
-		color: "#586069",
-		display: "none",
-		"&:hover": {
-			boxShadow: "none",
-			backgroundColor: "#fafbfc",
-		},
-	},
 }));
 
 function Navbar() {
 	const classes = useStyles();
+	const [anchorElMobile, setAnchorElMobile] = React.useState(null);
+	const [anchorElMobileSearch, setAnchorElMobileSearch] = React.useState(null);
 	const [anchorElSearch, setAnchorElSearch] = React.useState(null);
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
-	const [anchorElMobile, setAnchorElMobile] = React.useState(null);
-	const [anchorElMobileSearch, setAnchorElMobileSearch] = React.useState(null);
 
-	const handleClickMobileSearch = event => {
-		setAnchorElMobileSearch(event.currentTarget);
-	};
-
-	const handleCloseMobileSearch = () => {
-		setAnchorElMobileSearch(null);
-	};
-
+	// Open and close mobile size menu (max width 768px) on click
 	const handleClickMobile = event => {
 		setAnchorElMobile(event.currentTarget);
 	};
@@ -406,6 +412,16 @@ function Navbar() {
 		setAnchorElMobile(null);
 	};
 
+	// Open and close search menu inside mobile size menu on click
+	const handleClickMobileSearch = event => {
+		setAnchorElMobileSearch(event.currentTarget);
+	};
+
+	const handleCloseMobileSearch = () => {
+		setAnchorElMobileSearch(null);
+	};
+
+	// Open and close search menu on click
 	const handleClickSearch = event => {
 		setAnchorElSearch(event.currentTarget);
 	};
@@ -418,10 +434,12 @@ function Navbar() {
 		setAnchorElNew(event.currentTarget);
 	};
 
+	// Open and close new/+ menu on click
 	const handleCloseNew = () => {
 		setAnchorElNew(null);
 	};
 
+	// Open and close profile menu on click
 	const handleClickProfile = event => {
 		setAnchorElProfile(event.currentTarget);
 	};
