@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
 	// Navigation bar
@@ -199,12 +200,12 @@ const useStyles = makeStyles(theme => ({
 		width: "270px",
 		borderRadius: "6px",
 		backgroundColor: "transparent",
+		paddingLeft: "12px",
 		"& ::-webkit-input-placeholder": {
 			color: "#cccdce",
 			fontSize: "14px",
 			letterSpacing: 0,
 			opacity: 1,
-			paddingLeft: "12px",
 		},
 	},
 	menuSearchContainer: {
@@ -436,6 +437,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	statusModalHeaderIcon: {
 		fontSize: "14px",
+		color: "#586069",
 		cursor: "pointer",
 		"&:hover": {
 			color: "#036dd6",
@@ -449,7 +451,7 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	statusModalIconButton: {
-		height: "28px",
+		height: "32px",
 		minWidth: "42px",
 		borderRadius: "6px 0 0 6px",
 		backgroundColor: "#f6f8fa",
@@ -471,11 +473,40 @@ const useStyles = makeStyles(theme => ({
 	statusModalInput: {
 		backgroundColor: "#f6f8fa",
 		width: "100%",
-		height: "28px",
+		height: "32px",
 		paddingLeft: "12px",
 		border: "1px solid #e1e4e8",
 		borderLeft: "none",
 		borderRadius: "0 6px 6px 0",
+		"& ::-webkit-input-placeholder": {
+			color: "#586069",
+			fontSize: "14px",
+			letterSpacing: 0,
+			opacity: 1,
+		},
+	},
+	statusModalSuggestions: {
+		paddingLeft: "16px",
+		paddingRight: "16px",
+		paddingBottom: "16px",
+	},
+	statusModalSuggestionsText: {
+		fontSize: "13px",
+		paddingBottom: "16px",
+	},
+	statusModalSuggestionsGrid: {
+		marginLeft: "16px",
+	},
+	statusModalSuggestionsItem: {
+		fontSize: "13px",
+		color: "#586069",
+		cursor: "pointer",
+		"&:hover": {
+			color: "#036dd6",
+		},
+	},
+	statusModalSuggestionsIcon: {
+		marginRight: "4px",
 	},
 }));
 
@@ -1123,6 +1154,77 @@ function Navbar() {
 												disableUnderline={true}
 											/>
 										</MenuItem>
+										<Box className={classes.statusModalSuggestions}>
+											<Typography
+												className={classes.statusModalSuggestionsText}
+											>
+												Suggestions:
+											</Typography>
+											<Grid
+												container
+												className={classes.statusModalSuggestionsGrid}
+											>
+												<Grid
+													item
+													sm={6}
+													className={classes.statusModalSuggestionsItem}
+												>
+													<Box>
+														<span
+															className={classes.statusModalSuggestionsIcon}
+														>
+															🌴
+														</span>
+														On vacation
+													</Box>
+												</Grid>
+												<Grid
+													item
+													sm={6}
+													className={classes.statusModalSuggestionsItem}
+												>
+													<Box>
+														<span
+															className={classes.statusModalSuggestionsIcon}
+														>
+															🏠
+														</span>
+														Working from home
+													</Box>
+												</Grid>
+												<Grid
+													item
+													sm={6}
+													className={classes.statusModalSuggestionsItem}
+												>
+													<Box>
+														<span
+															className={classes.statusModalSuggestionsIcon}
+														>
+															🤒
+														</span>
+														Out sick
+													</Box>
+												</Grid>
+												<Grid
+													item
+													sm={6}
+													className={classes.statusModalSuggestionsItem}
+												>
+													<Box>
+														<span
+															className={classes.statusModalSuggestionsIcon}
+														>
+															🎯
+														</span>
+														Focusing
+													</Box>
+												</Grid>
+											</Grid>
+										</Box>
+										<Box className={classes.statusModalBusyContainer}>
+											<Box></Box>
+										</Box>
 									</Box>
 								</Modal>
 							</Box>
