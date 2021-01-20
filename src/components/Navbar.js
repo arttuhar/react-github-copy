@@ -10,6 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
+import Modal from "@material-ui/core/Modal";
 
 const useStyles = makeStyles(theme => ({
 	// Navigation bar
@@ -206,6 +207,11 @@ const useStyles = makeStyles(theme => ({
 			paddingLeft: "12px",
 		},
 	},
+	menuSearchContainer: {
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
+	},
 	searchList: {
 		paddingTop: "0",
 		paddingBottom: "0",
@@ -293,6 +299,11 @@ const useStyles = makeStyles(theme => ({
 			display: "none",
 		},
 	},
+	menuNewContainer: {
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
+	},
 	menuNewButton: {
 		color: "#fff",
 		fontSize: "20px",
@@ -321,6 +332,11 @@ const useStyles = makeStyles(theme => ({
 	navbarMenuProfile: {
 		width: "45px",
 		marginRight: "5px",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
+	},
+	menuProfileContainer: {
 		[theme.breakpoints.down(768)]: {
 			display: "none",
 		},
@@ -393,6 +409,74 @@ const useStyles = makeStyles(theme => ({
 	profileItemsSecondary: {
 		marginTop: "8px",
 	},
+	statusModalContainer: {
+		backgroundColor: "#fff",
+		width: "448px",
+		border: "1px solid #e1e4e8",
+		borderRadius: "6px",
+		left: "50%",
+		transform: "translateX(-50%)",
+		position: "fixed",
+		margin: "10vh auto",
+		outline: "none",
+	},
+	statusModalHeader: {
+		padding: "16px",
+		backgroundColor: "#f6f8fa",
+		borderRadius: "4px",
+		cursor: "default",
+		"&:hover": {
+			backgroundColor: "#f6f8fa",
+		},
+	},
+	statusModalHeaderText: {
+		flex: 1,
+		fontSize: "14px",
+		fontWeight: "bold",
+	},
+	statusModalHeaderIcon: {
+		fontSize: "14px",
+		cursor: "pointer",
+		"&:hover": {
+			color: "#036dd6",
+		},
+	},
+	statusModalInputContainer: {
+		padding: "16px",
+		cursor: "default",
+		"&:hover": {
+			backgroundColor: "#fff",
+		},
+	},
+	statusModalIconButton: {
+		height: "28px",
+		minWidth: "42px",
+		borderRadius: "6px 0 0 6px",
+		backgroundColor: "#f6f8fa",
+		border: "1px solid #e1e4e8",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#036dd6",
+			"& $statusModalIcon": {
+				color: "#fff",
+			},
+		},
+	},
+	statusModalIcon: {
+		justifyContent: "center",
+		alignItems: "center",
+		fontSize: "16px",
+		color: "#586069",
+	},
+	statusModalInput: {
+		backgroundColor: "#f6f8fa",
+		width: "100%",
+		height: "28px",
+		paddingLeft: "12px",
+		border: "1px solid #e1e4e8",
+		borderLeft: "none",
+		borderRadius: "0 6px 6px 0",
+	},
 }));
 
 function Navbar() {
@@ -402,6 +486,7 @@ function Navbar() {
 	const [anchorElSearch, setAnchorElSearch] = React.useState(null);
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+	const [statusModal, setStatusModal] = React.useState(null);
 
 	// Open and close mobile size menu (max width 768px) on click
 	const handleClickMobile = event => {
@@ -446,6 +531,16 @@ function Navbar() {
 
 	const handleCloseProfile = () => {
 		setAnchorElProfile(null);
+	};
+
+	// Open and close status modal
+
+	const handleOpenStatusModal = () => {
+		setStatusModal(true);
+	};
+
+	const handleCloseStatusModal = () => {
+		setStatusModal(false);
 	};
 
 	return (
@@ -982,13 +1077,54 @@ function Navbar() {
 									variant="outlined"
 									disableRipple={true}
 									className={classes.statusButton}
-									onClick={handleCloseProfile}
+									onClick={handleOpenStatusModal}
 								>
 									<Box className={classes.statusIcon}>
 										<i class="far fa-smile"></i>
 									</Box>
 									Set status
 								</Button>
+								<Modal
+									className={classes.statusModal}
+									open={statusModal}
+									onClose={handleCloseStatusModal}
+								>
+									<Box className={classes.statusModalContainer}>
+										<MenuItem
+											className={classes.statusModalHeader}
+											disableRipple={true}
+										>
+											<Typography className={classes.statusModalHeaderText}>
+												Edit status
+											</Typography>
+											<Box
+												className={classes.statusModalHeaderIcon}
+												onClick={handleCloseStatusModal}
+											>
+												<i class="fas fa-times"></i>
+											</Box>
+										</MenuItem>
+										<Divider />
+										<MenuItem
+											className={classes.statusModalInputContainer}
+											disableRipple={true}
+										>
+											<Button
+												className={classes.statusModalIconButton}
+												disableRipple={true}
+											>
+												<Box className={classes.statusModalIcon}>
+													<i class="far fa-smile"></i>
+												</Box>
+											</Button>
+											<Input
+												className={classes.statusModalInput}
+												placeholder="What's happening?"
+												disableUnderline={true}
+											/>
+										</MenuItem>
+									</Box>
+								</Modal>
 							</Box>
 							<Divider />
 							<Box className={classes.profileItemsPrimary}>

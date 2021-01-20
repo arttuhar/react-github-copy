@@ -9,7 +9,7 @@
 
 ## General info
 
-Project is to imitate GitHub layout. Main focus is on layout and actual functionality is left off.
+Main focus of this project is to make it look same as much as possible as GitHub. Focus is not to make code-wise solutions and some of them is possible to make with less code. Project contains minimal amount of functionality which affects to layout, like opening menus and modals. Deeper functionality is left off, like signing in or signing up, creating repositories or searching repositories. Project is hard coded to look like someone is logged in.
 
 ## Technologies
 
@@ -19,6 +19,11 @@ Project is to imitate GitHub layout. Main focus is on layout and actual function
 ## Project status
 
 Project is currently in development.
+
+Current development path:
+
+- Navigation bar (current)
+- Dashboard
 
 ## Setup
 
