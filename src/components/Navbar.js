@@ -12,6 +12,10 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
 
 const useStyles = makeStyles(theme => ({
 	// Navigation bar
@@ -506,7 +510,37 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	statusModalSuggestionsIcon: {
-		marginRight: "4px",
+		marginRight: "14px",
+	},
+	statusModalBusyContainer: {
+		padding: "16px",
+		paddingTop: "8px",
+	},
+	busyCheckbox: {
+		"&&:hover": {
+			backgroundColor: "transparent",
+		},
+	},
+	busyCheckboxOutline: {
+		fontSize: "16px",
+		color: "#6a737d",
+	},
+	busyCheckboxIcon: {
+		fontSize: "16px",
+		color: "#6a737d",
+	},
+	busyCheckboxLabel: {
+		fontSize: "14px",
+		fontWeight: "bold",
+		cursor: "default",
+	},
+	busyDescription: {
+		marginLeft: "24px",
+	},
+	busyDescriptionText: {
+		fontSize: "12px",
+		lineHeight: "1.2",
+		color: "#586069",
 	},
 }));
 
@@ -1223,7 +1257,37 @@ function Navbar() {
 											</Grid>
 										</Box>
 										<Box className={classes.statusModalBusyContainer}>
-											<Box></Box>
+											<FormControlLabel
+												className={classes.statusModalBusyCheckbox}
+												control={
+													<Checkbox
+														className={classes.busyCheckbox}
+														icon={
+															<CheckBoxOutlineBlankIcon
+																className={classes.busyCheckboxOutline}
+															/>
+														}
+														checkedIcon={
+															<CheckBoxIcon
+																className={classes.busyCheckboxIcon}
+															/>
+														}
+														disableRipple={true}
+													/>
+												}
+												label={
+													<Typography className={classes.busyCheckboxLabel}>
+														Busy
+													</Typography>
+												}
+											/>
+											<Box className={classes.busyDescription}>
+												<Typography className={classes.busyDescriptionText}>
+													When others mention you, assign you, or request your
+													review, GitHub will let them know that you have
+													limited availability.
+												</Typography>
+											</Box>
 										</Box>
 									</Box>
 								</Modal>
