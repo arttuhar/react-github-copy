@@ -16,6 +16,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles(theme => ({
 	// Navigation bar
@@ -414,6 +415,9 @@ const useStyles = makeStyles(theme => ({
 	profileItemsSecondary: {
 		marginTop: "8px",
 	},
+
+	// Status modal
+
 	statusModalContainer: {
 		backgroundColor: "#fff",
 		width: "448px",
@@ -425,6 +429,8 @@ const useStyles = makeStyles(theme => ({
 		margin: "10vh auto",
 		outline: "none",
 	},
+
+	// Status modal header
 	statusModalHeader: {
 		padding: "16px",
 		backgroundColor: "#f6f8fa",
@@ -447,6 +453,9 @@ const useStyles = makeStyles(theme => ({
 			color: "#036dd6",
 		},
 	},
+
+	// Status modal input
+
 	statusModalInputContainer: {
 		padding: "16px",
 		cursor: "default",
@@ -489,6 +498,9 @@ const useStyles = makeStyles(theme => ({
 			opacity: 1,
 		},
 	},
+
+	// Status modal suggestions
+
 	statusModalSuggestions: {
 		paddingLeft: "16px",
 		paddingRight: "16px",
@@ -512,6 +524,9 @@ const useStyles = makeStyles(theme => ({
 	statusModalSuggestionsIcon: {
 		marginRight: "14px",
 	},
+
+	// Status modal busy field
+
 	statusModalBusyContainer: {
 		padding: "16px",
 		paddingTop: "8px",
@@ -523,11 +538,11 @@ const useStyles = makeStyles(theme => ({
 	},
 	busyCheckboxOutline: {
 		fontSize: "16px",
-		color: "#6a737d",
+		color: "#959da5",
 	},
 	busyCheckboxIcon: {
 		fontSize: "16px",
-		color: "#6a737d",
+		color: "#959da5",
 	},
 	busyCheckboxLabel: {
 		fontSize: "14px",
@@ -542,6 +557,100 @@ const useStyles = makeStyles(theme => ({
 		lineHeight: "1.2",
 		color: "#586069",
 	},
+
+	// Status modal clear status
+	statusModalClearContainer: {
+		fontSize: "14px",
+		cursor: "default",
+		padding: "16px",
+		"&:hover": {
+			backgroundColor: "transparent",
+		},
+	},
+	selectClear: {
+		border: "1px solid #e1e4e8",
+		borderRadius: "6px",
+		fontSize: "12px",
+		height: "28px",
+		marginLeft: "8px",
+		paddingLeft: "12px",
+		fontWeight: "bold",
+	},
+	selectClearDropdown: {
+		border: "1px solid #e1e4e8",
+		boxShadow: "none",
+		width: "220px",
+		borderRadius: "6px",
+	},
+	selectClearDropdownItem: {
+		fontSize: "12px",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#036dd6",
+			color: "#fff",
+		},
+	},
+	focusedRoot: {
+		"&:focus": {
+			backgroundColor: "transparent",
+		},
+	},
+	selectedItem: {},
+	selectedRoot: {
+		"&$selectedItem": {
+			backgroundColor: "transparent",
+			"&:hover": {
+				backgroundColor: "#036dd6",
+			},
+		},
+	},
+
+	// Status modal buttons
+
+	statusModalButtonContainer: {
+		padding: "16px",
+		cursor: "default",
+		justifyContent: "space-between",
+		"&:hover": {
+			backgroundColor: "transparent",
+		},
+	},
+	buttonSetStatus: {
+		border: "1px solid rgba(27, 31, 35, 0.15)",
+		width: "200px",
+		height: "32px",
+		borderRadius: "6px",
+		color: "#fff",
+		backgroundColor: "#2ea44f",
+		textTransform: "none",
+		fontWeight: "bold",
+		fontSize: "14px",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#2c974b",
+		},
+	},
+	disabledButtonSetStatus: {
+		backgroundColor: "#94d3a2",
+		border: "1px solid rgba(27, 31, 35, 0.1)",
+	},
+	buttonClearStatus: {
+		border: "1px solid rgba(27, 31, 35, 0.15)",
+		width: "200px",
+		height: "32px",
+		borderRadius: "6px",
+		backgroundColor: "#fafbfc",
+		textTransform: "none",
+		fontWeight: "bold",
+		fontSize: "14px",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#f3f4f6",
+		},
+	},
+	disabledButtonClearStatus: {
+		border: "1px solid rgba(27, 31, 35, 0.1)",
+	},
 }));
 
 function Navbar() {
@@ -552,6 +661,7 @@ function Navbar() {
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
 	const [statusModal, setStatusModal] = React.useState(null);
+	const [statusClear, setStatusClear] = React.useState("Never");
 
 	// Open and close mobile size menu (max width 768px) on click
 	const handleClickMobile = event => {
@@ -606,6 +716,12 @@ function Navbar() {
 
 	const handleCloseStatusModal = () => {
 		setStatusModal(false);
+	};
+
+	// Set status clear selection
+
+	const handleChange = event => {
+		setStatusClear(event.target.value);
 	};
 
 	return (
@@ -1289,6 +1405,128 @@ function Navbar() {
 												</Typography>
 											</Box>
 										</Box>
+										<Divider />
+										<MenuItem
+											className={classes.statusModalClearContainer}
+											disableRipple={true}
+										>
+											Clear status
+											<Select
+												className={classes.selectClear}
+												classes={{ root: classes.focusedRoot }}
+												onChange={handleChange}
+												value={statusClear}
+												disableUnderline={true}
+												MenuProps={{
+													style: {
+														marginTop: "3px",
+														marginLeft: "-13px",
+													},
+													anchorOrigin: {
+														vertical: "bottom",
+														horizontal: "left",
+													},
+													classes: {
+														paper: classes.selectClearDropdown,
+													},
+													getContentAnchorEl: null,
+												}}
+											>
+												<MenuItem
+													classes={{
+														selected: classes.selectedItem,
+														root: classes.selectedRoot,
+													}}
+													value="Never"
+													disableRipple={true}
+													className={classes.selectClearDropdownItem}
+												>
+													<b>Never</b>
+												</MenuItem>
+												<Divider />
+												<MenuItem
+													classes={{
+														selected: classes.selectedItem,
+														root: classes.selectedRoot,
+													}}
+													value="in 30 min"
+													disableRipple={true}
+													className={classes.selectClearDropdownItem}
+												>
+													in 30 minutes
+												</MenuItem>
+												<MenuItem
+													classes={{
+														selected: classes.selectedItem,
+														root: classes.selectedRoot,
+													}}
+													value="in 1 hour"
+													disableRipple={true}
+													className={classes.selectClearDropdownItem}
+												>
+													in 1 hour
+												</MenuItem>
+												<MenuItem
+													classes={{
+														selected: classes.selectedItem,
+														root: classes.selectedRoot,
+													}}
+													value="in 4 hour"
+													disableRipple={true}
+													className={classes.selectClearDropdownItem}
+												>
+													in 4 hours
+												</MenuItem>
+												<MenuItem
+													classes={{
+														selected: classes.selectedItem,
+														root: classes.selectedRoot,
+													}}
+													value="today"
+													disableRipple={true}
+													className={classes.selectClearDropdownItem}
+												>
+													today
+												</MenuItem>
+												<MenuItem
+													classes={{
+														selected: classes.selectedItem,
+														root: classes.selectedRoot,
+													}}
+													value="this week"
+													disableRipple={true}
+													className={classes.selectClearDropdownItem}
+												>
+													this week
+												</MenuItem>
+											</Select>
+										</MenuItem>
+										<Divider />
+										<MenuItem
+											className={classes.statusModalButtonContainer}
+											disableRipple={true}
+										>
+											<Button
+												className={classes.buttonSetStatus}
+												classes={{ disabled: classes.disabledButtonSetStatus }}
+												disableRipple={true}
+												disabled
+												onClick={handleCloseStatusModal}
+											>
+												Set status
+											</Button>
+											<Button
+												className={classes.buttonClearStatus}
+												classes={{
+													disabled: classes.disabledButtonClearStatus,
+												}}
+												disableRipple={true}
+												disabled
+												onClick={handleCloseStatusModal}
+											>
+												Clear status
+											</Button>
+										</MenuItem>
 									</Box>
 								</Modal>
 							</Box>
