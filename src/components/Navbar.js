@@ -428,6 +428,10 @@ const useStyles = makeStyles(theme => ({
 		position: "fixed",
 		margin: "10vh auto",
 		outline: "none",
+		boxShadow: "0 0 18px rgba(0, 0, 0, 0.4)",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
 	},
 
 	// Status modal header
@@ -485,6 +489,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	statusModalInput: {
 		backgroundColor: "#f6f8fa",
+		fontSize: "14px",
 		width: "100%",
 		height: "32px",
 		paddingLeft: "12px",
@@ -661,7 +666,9 @@ function Navbar() {
 	const [anchorElNew, setAnchorElNew] = React.useState(null);
 	const [anchorElProfile, setAnchorElProfile] = React.useState(null);
 	const [statusModal, setStatusModal] = React.useState(null);
+	const [hideSuggestions, setHideSuggestions] = React.useState(true);
 	const [statusClear, setStatusClear] = React.useState("Never");
+	const [status, setStatus] = React.useState("");
 
 	// Open and close mobile size menu (max width 768px) on click
 	const handleClickMobile = event => {
@@ -708,7 +715,7 @@ function Navbar() {
 		setAnchorElProfile(null);
 	};
 
-	// Open and close status modal
+	// Open and close status modal, clear input on close
 
 	const handleOpenStatusModal = () => {
 		setStatusModal(true);
@@ -716,12 +723,49 @@ function Navbar() {
 
 	const handleCloseStatusModal = () => {
 		setStatusModal(false);
+		setStatus("");
 	};
 
-	// Set status clear selection
+	// Suggestion shortcuts
+
+	const setVacation = event => {
+		setStatus("On vacation");
+	};
+
+	const setHome = event => {
+		setStatus("Working from home");
+	};
+
+	const setSick = event => {
+		setStatus("Out sick");
+	};
+
+	const setFocusing = event => {
+		setStatus("Focusing");
+	};
+
+	// Hide suggestions section when checkbox is checked
+
+	const toggleHideSuggestions = () => {
+		setHideSuggestions(prev => !prev);
+	};
+
+	// Set status clear time selection
 
 	const handleChange = event => {
 		setStatusClear(event.target.value);
+	};
+
+	// Check status input value
+
+	const handleStatus = event => {
+		setStatus(event.target.value);
+	};
+
+	// Clear status
+
+	const clearStatus = event => {
+		setStatus("");
 	};
 
 	return (
@@ -1302,81 +1346,90 @@ function Navbar() {
 												className={classes.statusModalInput}
 												placeholder="What's happening?"
 												disableUnderline={true}
+												value={status}
+												onChange={handleStatus}
 											/>
 										</MenuItem>
-										<Box className={classes.statusModalSuggestions}>
-											<Typography
-												className={classes.statusModalSuggestionsText}
-											>
-												Suggestions:
-											</Typography>
-											<Grid
-												container
-												className={classes.statusModalSuggestionsGrid}
-											>
-												<Grid
-													item
-													sm={6}
-													className={classes.statusModalSuggestionsItem}
+										{hideSuggestions && (
+											<Box className={classes.statusModalSuggestions}>
+												<Typography
+													className={classes.statusModalSuggestionsText}
 												>
-													<Box>
-														<span
-															className={classes.statusModalSuggestionsIcon}
-														>
-															🌴
-														</span>
-														On vacation
-													</Box>
-												</Grid>
+													Suggestions:
+												</Typography>
 												<Grid
-													item
-													sm={6}
-													className={classes.statusModalSuggestionsItem}
+													container
+													className={classes.statusModalSuggestionsGrid}
 												>
-													<Box>
-														<span
-															className={classes.statusModalSuggestionsIcon}
-														>
-															🏠
-														</span>
-														Working from home
-													</Box>
+													<Grid
+														item
+														sm={6}
+														className={classes.statusModalSuggestionsItem}
+														onClick={setVacation}
+													>
+														<Box>
+															<span
+																className={classes.statusModalSuggestionsIcon}
+															>
+																🌴
+															</span>
+															On vacation
+														</Box>
+													</Grid>
+													<Grid
+														item
+														sm={6}
+														className={classes.statusModalSuggestionsItem}
+														onClick={setHome}
+													>
+														<Box>
+															<span
+																className={classes.statusModalSuggestionsIcon}
+															>
+																🏠
+															</span>
+															Working from home
+														</Box>
+													</Grid>
+													<Grid
+														item
+														sm={6}
+														className={classes.statusModalSuggestionsItem}
+														onClick={setSick}
+													>
+														<Box>
+															<span
+																className={classes.statusModalSuggestionsIcon}
+															>
+																🤒
+															</span>
+															Out sick
+														</Box>
+													</Grid>
+													<Grid
+														item
+														sm={6}
+														className={classes.statusModalSuggestionsItem}
+														onClick={setFocusing}
+													>
+														<Box>
+															<span
+																className={classes.statusModalSuggestionsIcon}
+															>
+																🎯
+															</span>
+															Focusing
+														</Box>
+													</Grid>
 												</Grid>
-												<Grid
-													item
-													sm={6}
-													className={classes.statusModalSuggestionsItem}
-												>
-													<Box>
-														<span
-															className={classes.statusModalSuggestionsIcon}
-														>
-															🤒
-														</span>
-														Out sick
-													</Box>
-												</Grid>
-												<Grid
-													item
-													sm={6}
-													className={classes.statusModalSuggestionsItem}
-												>
-													<Box>
-														<span
-															className={classes.statusModalSuggestionsIcon}
-														>
-															🎯
-														</span>
-														Focusing
-													</Box>
-												</Grid>
-											</Grid>
-										</Box>
+											</Box>
+										)}
 										<Box className={classes.statusModalBusyContainer}>
 											<FormControlLabel
 												className={classes.statusModalBusyCheckbox}
 												control={
 													<Checkbox
+														onChange={toggleHideSuggestions}
 														className={classes.busyCheckbox}
 														icon={
 															<CheckBoxOutlineBlankIcon
@@ -1510,8 +1563,8 @@ function Navbar() {
 												className={classes.buttonSetStatus}
 												classes={{ disabled: classes.disabledButtonSetStatus }}
 												disableRipple={true}
-												disabled
 												onClick={handleCloseStatusModal}
+												disabled={status.length < 1}
 											>
 												Set status
 											</Button>
@@ -1521,8 +1574,8 @@ function Navbar() {
 													disabled: classes.disabledButtonClearStatus,
 												}}
 												disableRipple={true}
-												disabled
-												onClick={handleCloseStatusModal}
+												disabled={status.length < 1}
+												onClick={clearStatus}
 											>
 												Clear status
 											</Button>
