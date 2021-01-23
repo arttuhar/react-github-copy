@@ -60,19 +60,37 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: "16px",
 		marginRight: "16px",
 		paddingBottom: "16px",
+		outline: "none",
 	},
 	menuMobileSearchInput: {
-		border: "1px solid #586069",
+		display: "flex",
+		border: "1px solid #444d56",
 		borderRadius: "6px",
-		height: "28px",
+		backgroundColor: "transparent",
+		height: "30px",
 		width: "100%",
 		paddingLeft: "12px",
-		"& ::-webkit-input-placeholder": {
-			color: "#cccdce",
-			opacity: 1,
-			fontSize: "14px",
-			letterSpacing: 0,
-		},
+		paddingRight: "8px",
+		justifyContent: "space-between",
+		alignItems: "center",
+		cursor: "text",
+	},
+	mobileSearchInputText: {
+		display: "inline-flex",
+		color: "#cccdce",
+		fontSize: "14px",
+		fontWeight: "bold",
+		letterSpacing: 0,
+	},
+	mobileSearchInputIcon: {
+		display: "inline-flex",
+		border: "1px solid #444d56",
+		borderRadius: "4px",
+		width: "19px",
+		height: "20px",
+		justifyContent: "center",
+		color: "#707c7f",
+		cursor: "default",
 	},
 	menuMobileSearchContainer: {
 		[theme.breakpoints.up(768)]: {
@@ -200,18 +218,34 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	searchInput: {
-		height: "28px",
-		border: "1px solid #797c7f",
+		display: "flex",
+		height: "30px",
+		border: "1px solid #444d56",
 		width: "270px",
 		borderRadius: "6px",
 		backgroundColor: "transparent",
 		paddingLeft: "12px",
-		"& ::-webkit-input-placeholder": {
-			color: "#cccdce",
-			fontSize: "14px",
-			letterSpacing: 0,
-			opacity: 1,
-		},
+		paddingRight: "8px",
+		justifyContent: "space-between",
+		alignItems: "center",
+		cursor: "text",
+	},
+	searchInputText: {
+		display: "inline-flex",
+		color: "#cccdce",
+		fontSize: "14px",
+		fontWeight: "bold",
+		letterSpacing: 0,
+	},
+	searchInputIcon: {
+		display: "inline-flex",
+		border: "1px solid #444d56",
+		borderRadius: "4px",
+		width: "19px",
+		height: "20px",
+		justifyContent: "center",
+		color: "#707c7f",
+		cursor: "default",
 	},
 	menuSearchContainer: {
 		[theme.breakpoints.down(768)]: {
@@ -730,24 +764,29 @@ function Navbar() {
 
 	const setVacation = event => {
 		setStatus("On vacation");
+		setHideSuggestions(false);
 	};
 
 	const setHome = event => {
 		setStatus("Working from home");
+		setHideSuggestions(false);
 	};
 
 	const setSick = event => {
 		setStatus("Out sick");
+		setHideSuggestions(false);
 	};
 
 	const setFocusing = event => {
 		setStatus("Focusing");
+		setHideSuggestions(false);
 	};
 
 	// Hide suggestions section when checkbox is checked
 
 	const toggleHideSuggestions = () => {
 		setHideSuggestions(prev => !prev);
+		setStatus("I may be slow to respond");
 	};
 
 	// Set status clear time selection
@@ -805,15 +844,17 @@ function Navbar() {
 							}}
 						>
 							<Box className={classes.menuMobileSearch}>
-								<Input
+								<Box
 									className={classes.menuMobileSearchInput}
-									type="text"
-									disableUnderline={true}
-									placeholder="Search or jump to..."
 									aria-controls="mobileMenuSearch"
 									aria-haspopup="true"
 									onClick={handleClickMobileSearch}
-								/>
+								>
+									<Typography className={classes.mobileSearchInputText}>
+										Search or jump to...
+									</Typography>
+									<Box className={classes.mobileSearchInputIcon}>/</Box>
+								</Box>
 								<Menu
 									className={classes.menuMobileSearchContainer}
 									id="mobileMenuSearch"
@@ -1024,15 +1065,17 @@ function Navbar() {
 					</Link>
 					<Box className={classes.empty}></Box>
 					<Box className={classes.navbarSearch}>
-						<Input
+						<Box
 							className={classes.searchInput}
-							type="text"
-							disableUnderline={true}
-							placeholder="Search or jump to..."
 							aria-controls="searchMenu"
 							aria-haspopup="true"
 							onClick={handleClickSearch}
-						/>
+						>
+							<Typography className={classes.searchInputText}>
+								Search or jump to...
+							</Typography>
+							<Box className={classes.searchInputIcon}>/</Box>
+						</Box>
 						<Menu
 							className={classes.menuSearchContainer}
 							id="searchMenu"
