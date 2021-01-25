@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: "center",
 		fontFamily: "sans-serif",
 		boxShadow: "none",
+		marginBottom: "50px",
 		[theme.breakpoints.down(768)]: {
 			display: "flex",
 		},

@@ -22,8 +22,8 @@ Project is currently in development.
 
 Current development path:
 
-- Navigation bar (current)
-- Dashboard
+- Navigation bar (small fixes needed)
+- Dashboard (current)
 
 ## Setup
 
