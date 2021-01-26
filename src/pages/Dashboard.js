@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import Divider from "@material-ui/core/Divider";
+import Popover from "@material-ui/core/Popover";
 
 const useStyles = makeStyles(theme => ({
 	dashboardContainer: {
@@ -130,6 +131,51 @@ const useStyles = makeStyles(theme => ({
 		fontWeight: "bold",
 		color: "#0366d6",
 	},
+	repositoryPopoverContainer: {
+		pointerEvents: "none",
+		transition: "none",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
+	},
+	popoverHeader: {
+		padding: 0,
+		"&:hover": {
+			backgroundColor: "#fff",
+		},
+	},
+	popoverHeaderIcon: {
+		fontSize: "14px",
+		color: "#586069",
+		marginRight: "8px",
+	},
+	popoverHeaderText: {
+		fontSize: "14px",
+		fontWeight: "bold",
+	},
+	popoverText: {
+		fontSize: "14px",
+		color: "#586069",
+		paddingTop: "8px",
+		paddingBottom: "8px",
+	},
+	popoverFooter: {
+		padding: 0,
+	},
+	popoverFooterLanguageIcon: {
+		fontSize: "12px",
+		color: "#f1e05a",
+		marginRight: "4px",
+	},
+	popoverFooterLanguageText: {
+		fontSize: "12px",
+		color: "#586069",
+		marginRight: "20px",
+	},
+	popoverFooterUpdated: {
+		fontSize: "12px",
+		color: "#586069",
+	},
 	repositoriesDivider: {
 		[theme.breakpoints.down(768)]: {
 			display: "none",
@@ -187,6 +233,19 @@ const theme = createMuiTheme({
 
 function Dashboard() {
 	const classes = useStyles();
+	const [anchorElPopover, setAnchorElPopover] = React.useState(null);
+	const openPopover = Boolean(anchorElPopover);
+
+	// Open and close repository popover on hover
+
+	const handleHoverPopover = event => {
+		setAnchorElPopover(event.currentTarget);
+	};
+
+	const handleClosePopover = () => {
+		setAnchorElPopover(null);
+	};
+
 	return (
 		<React.Fragment>
 			<Box className={classes.dashboardContainer}>
@@ -230,6 +289,10 @@ function Dashboard() {
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -238,9 +301,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "0 8px 24px rgba(149, 157, 165, 0.2)",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -249,9 +373,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -260,9 +445,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -271,9 +517,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -282,9 +589,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -293,9 +661,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -304,9 +733,70 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 										<MenuItem
 											className={classes.repositoriesListItem}
 											disableRipple={true}
+											aria-owns={openPopover ? "repositoryPopover" : undefined}
+											aria-haspopup="true"
+											onMouseEnter={handleHoverPopover}
+											onMouseLeave={handleClosePopover}
 										>
 											<Box className={classes.repositoriesListItemIcon}>
 												<i class="far fa-bookmark"></i>
@@ -315,6 +805,63 @@ function Dashboard() {
 												username/repository
 											</Typography>
 										</MenuItem>
+										<Popover
+											className={classes.repositoryPopoverContainer}
+											id="repositoryPopover"
+											open={openPopover}
+											anchorEl={anchorElPopover}
+											anchorOrigin={{
+												vertical: "top",
+												horizontal: "center",
+											}}
+											transformOrigin={{
+												vertical: "bottom",
+												horizontal: "left",
+											}}
+											PaperProps={{
+												style: {
+													width: "360px",
+													padding: "16px",
+													boxShadow: "none",
+													border: "1px solid #eaecef",
+													borderRadius: "6px",
+												},
+											}}
+											onClose={handleClosePopover}
+											disableRestoreFocus
+											transitionDuration="100"
+										>
+											<MenuItem
+												className={classes.popoverHeader}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverHeaderIcon}>
+													<i class="far fa-bookmark"></i>
+												</Box>
+												<Typography className={classes.popoverHeaderText}>
+													username/repository
+												</Typography>
+											</MenuItem>
+											<Typography className={classes.popoverText}>
+												This is placeholder description for repository.
+											</Typography>
+											<MenuItem
+												className={classes.popoverFooter}
+												disableRipple={true}
+											>
+												<Box className={classes.popoverFooterLanguageIcon}>
+													<i class="fas fa-circle"></i>
+												</Box>
+												<Typography
+													className={classes.popoverFooterLanguageText}
+												>
+													JavaScript
+												</Typography>
+												<Typography className={classes.popoverFooterUpdated}>
+													Updated yesterday
+												</Typography>
+											</MenuItem>
+										</Popover>
 									</Box>
 								</Box>
 								<Divider className={classes.repositoriesDivider} />
@@ -330,6 +877,7 @@ function Dashboard() {
 									<Button
 										variant="outlined"
 										className={classes.repositoriesTeamButton}
+										disableRipple={true}
 									>
 										Create an organization
 									</Button>
