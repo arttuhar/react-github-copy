@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
 		display: "flex",
 		minHeight: "100vh",
 		backgroundColor: "#f6f8fa",
+		marginTop: "60px",
 	},
 	gridRepositories: {
 		backgroundColor: "#fff",
@@ -27,13 +28,8 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	repositoriesContainer: {
-		marginTop: "60px",
 		padding: "24px",
-		paddingTop: "32px",
-
-		"&:hover": {
-			backgroundColor: "#fff",
-		},
+		paddingTop: "16px",
 	},
 	repositoriesHeader: {
 		padding: 0,
@@ -42,20 +38,33 @@ const useStyles = makeStyles(theme => ({
 		"&:hover": {
 			backgroundColor: "#fff",
 		},
+		[theme.breakpoints.down(768)]: {
+			paddingBottom: "4px",
+			"&:hover": {
+				backgroundColor: "#f6f8fa",
+			},
+		},
 	},
 	repositoriesText: {
 		flex: 1,
 		fontSize: "14px",
 		fontWeight: "bold",
+		[theme.breakpoints.down(768)]: {
+			fontSize: "16px",
+			fontWeight: "normal",
+		},
 	},
 	repositoriesNewButton: {
-		height: "30px",
+		height: "28px",
 		borderRadius: "6px",
 		backgroundColor: "#2ea44f",
 		border: "1px solid rgba(27, 31, 35, 0.15)",
 		transition: "none",
 		"&:hover": {
 			backgroundColor: "#2c974b",
+		},
+		[theme.breakpoints.down(768)]: {
+			display: "none",
 		},
 	},
 	repositoriesNewButtonIcon: {
@@ -68,6 +77,16 @@ const useStyles = makeStyles(theme => ({
 		textTransform: "none",
 		fontWeight: "bold",
 		letterSpacing: 0.1,
+	},
+	repositoriesMobile: {
+		[theme.breakpoints.down(768)]: {
+			border: "1px solid #eaecef",
+			borderRadius: "6px",
+			backgroundColor: "#fff",
+			paddingTop: "12px",
+			paddingLeft: "8px",
+			paddingRight: "8px",
+		},
 	},
 	repositoriesInput: {
 		backgroundColor: "#f6f8fa",
@@ -87,6 +106,9 @@ const useStyles = makeStyles(theme => ({
 	repositoriesList: {
 		marginTop: "16px",
 		marginBottom: "16px",
+		[theme.breakpoints.down(768)]: {
+			marginBottom: "4px",
+		},
 	},
 	repositoriesListItem: {
 		padding: 0,
@@ -96,6 +118,7 @@ const useStyles = makeStyles(theme => ({
 			textDecoration: "underline",
 			textDecorationColor: "#0366d6",
 		},
+		[theme.breakpoints.down(768)]: {},
 	},
 	repositoriesListItemIcon: {
 		marginRight: "10px",
@@ -106,6 +129,45 @@ const useStyles = makeStyles(theme => ({
 		fontSize: "14px",
 		fontWeight: "bold",
 		color: "#0366d6",
+	},
+	repositoriesDivider: {
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
+	},
+	repositoriesTeamContainer: {
+		marginTop: "16px",
+		[theme.breakpoints.down(768)]: {
+			display: "none",
+		},
+	},
+	repositoriesTeamHeader: {
+		fontSize: "14px",
+		fontWeight: "bold",
+		paddingBottom: "4px",
+	},
+	repositoriesTeamText: {
+		fontSize: "14px",
+		color: "#586069",
+		letterSpacing: 0.2,
+		paddingBottom: "10px",
+	},
+	repositoriesTeamButton: {
+		fontSize: "12px",
+		fontWeight: "bold",
+		color: "#0366d6",
+		textTransform: "none",
+		letterSpacing: 0.1,
+		border: "1px solid rgba(27, 31, 35, 0.15)",
+		borderRadius: "6px",
+		height: "28px",
+		boxShadow: "0 1px 0 rgba(27, 31, 35, 0.04)",
+		transition: "0.2 cubic-bezier(0.3, 0, 0.5, 1)",
+		"&:hover": {
+			backgroundColor: "#0366d6",
+			color: "#fff",
+			boxShadow: "0 1px 0 rgba(27, 31, 35, 0.1)",
+		},
 	},
 	gridMain: {},
 	gridExplore: {},
@@ -158,102 +220,120 @@ function Dashboard() {
 										<Box className={classes.repositoriesNewButtonText}>New</Box>
 									</Button>
 								</MenuItem>
-								<Input
-									className={classes.repositoriesInput}
-									disableUnderline={true}
-									placeholder="Find a repository..."
-								/>
-								<Box className={classes.repositoriesList}>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
-									<MenuItem
-										className={classes.repositoriesListItem}
-										disableRipple={true}
-									>
-										<Box className={classes.repositoriesListItemIcon}>
-											<i class="far fa-bookmark"></i>
-										</Box>
-										<Typography className={classes.repositoriesListItemText}>
-											username/repository
-										</Typography>
-									</MenuItem>
+								<Box className={classes.repositoriesMobile}>
+									<Input
+										className={classes.repositoriesInput}
+										disableUnderline={true}
+										placeholder="Find a repository..."
+									/>
+									<Box className={classes.repositoriesList}>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+										<MenuItem
+											className={classes.repositoriesListItem}
+											disableRipple={true}
+										>
+											<Box className={classes.repositoriesListItemIcon}>
+												<i class="far fa-bookmark"></i>
+											</Box>
+											<Typography className={classes.repositoriesListItemText}>
+												username/repository
+											</Typography>
+										</MenuItem>
+									</Box>
 								</Box>
-								<Divider />
+								<Divider className={classes.repositoriesDivider} />
+								<Box className={classes.repositoriesTeamContainer}>
+									<Typography className={classes.repositoriesTeamHeader}>
+										Working with a team?
+									</Typography>
+									<Typography className={classes.repositoriesTeamText}>
+										GitHub is built for collaboration. Set up an organization to
+										improve the way your team works together, and get access to
+										more features.
+									</Typography>
+									<Button
+										variant="outlined"
+										className={classes.repositoriesTeamButton}
+									>
+										Create an organization
+									</Button>
+								</Box>
 							</Box>
 						</Grid>
 						<Grid
