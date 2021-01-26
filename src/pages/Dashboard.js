@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import Divider from "@material-ui/core/Divider";
 import Popover from "@material-ui/core/Popover";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(theme => ({
 	dashboardContainer: {
@@ -30,7 +31,11 @@ const useStyles = makeStyles(theme => ({
 	},
 	repositoriesContainer: {
 		padding: "24px",
-		paddingTop: "16px",
+		paddingTop: "32px",
+		[theme.breakpoints.down(768)]: {
+			paddingLeft: "16px",
+			paddingRight: "16px",
+		},
 	},
 	repositoriesHeader: {
 		padding: 0,
@@ -90,7 +95,7 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	repositoriesInput: {
-		backgroundColor: "#f6f8fa",
+		backgroundColor: "#fafbfc",
 		width: "100%",
 		height: "32px",
 		borderRadius: "6px",
@@ -204,6 +209,7 @@ const useStyles = makeStyles(theme => ({
 		color: "#0366d6",
 		textTransform: "none",
 		letterSpacing: 0.1,
+		backgroundColor: "#fafbfc",
 		border: "1px solid rgba(27, 31, 35, 0.15)",
 		borderRadius: "6px",
 		height: "28px",
@@ -215,7 +221,146 @@ const useStyles = makeStyles(theme => ({
 			boxShadow: "0 1px 0 rgba(27, 31, 35, 0.1)",
 		},
 	},
-	gridMain: {},
+	gridMain: {
+		paddingTop: "32px",
+		[theme.breakpoints.down(768)]: {
+			paddingTop: 0,
+		},
+	},
+	mainContainer: {
+		backgroundColor: "#fff",
+		border: "1px solid #eaecef",
+		borderRadius: "6px",
+		marginLeft: "16px",
+		marginRight: "16px",
+		padding: "32px",
+		[theme.breakpoints.down(768)]: {
+			marginTop: 0,
+		},
+	},
+	mainHeader: {
+		fontSize: "24px",
+		fontWeight: "bold",
+		lineHeight: 1.25,
+		letterSpacing: 0.1,
+		paddingBottom: "8px",
+	},
+	mainText: {
+		fontSize: "16px",
+		color: "#586069",
+		paddingBottom: "16px",
+	},
+	mainTextLink: {
+		color: "#0366d6",
+		cursor: "pointer",
+		"&:hover": {
+			textDecoration: "underline",
+			textDecorationColor: "#0366d6",
+		},
+	},
+	mainButton: {
+		height: "32px",
+		fontSize: "14px",
+		fontWeight: "bold",
+		textTransform: "none",
+		backgroundColor: "#fafbfc",
+		border: "1px solid rgba(27, 31, 35, 0.15)",
+		borderRadius: "6px",
+		color: "#0366d6",
+		boxShadow: "0 1px 0 rgba(27, 31, 35, 0.04)",
+		transition: "0.2 cubic-bezier(0.3, 0, 0.5, 1)",
+		"&:hover": {
+			backgroundColor: "#0366d6",
+			color: "#fff",
+			boxShadow: "0 1px 0 rgba(27, 31, 35, 0.1)",
+		},
+	},
+	mainUnder: {
+		padding: "20px",
+		marginBottom: "300px",
+	},
+	mainUnderTip: {
+		display: "flex",
+		marginBottom: "8px",
+	},
+	mainUnderTipIcon: {
+		display: "inline-block",
+		marginRight: "6px",
+		fontSize: "16px",
+	},
+	mainUnderTipText: {
+		display: "inline-block",
+		fontSize: "13px",
+		color: "#586069",
+	},
+	mainUnderTipLink: {
+		color: "#0366d6",
+		cursor: "pointer",
+		"&:hover": {
+			textDecoration: "underline",
+			textDecorationColor: "#0366d6",
+		},
+	},
+	mainUnderSubscribe: {
+		display: "flex",
+		cursor: "pointer",
+	},
+	mainUnderSubscribeIcon: {
+		display: "inline-block",
+		marginRight: "6px",
+		fontSize: "14px",
+	},
+	mainUnderSubscribeText: {
+		display: "inline-block",
+		fontSize: "13px",
+		color: "#586069",
+		"&:hover": {
+			color: "#0366d6",
+			textDecoration: "underline",
+			textDecorationColor: "#0366d6",
+		},
+	},
+	mainFooter: {
+		padding: "16px",
+		paddingBottom: "0",
+	},
+	footerGridLogo: {
+		[theme.breakpoints.down(960)]: {
+			display: "none",
+		},
+	},
+	footerItemLogo: {
+		display: "flex",
+		alignItems: "center",
+		"&:hover": {
+			textDecoration: "none",
+		},
+	},
+	footerItemLogoIcon: {
+		display: "inline-block",
+		marginRight: "8px",
+		fontSize: "24px",
+		color: "#d1d5da",
+		"&:hover": {
+			color: "#586069",
+		},
+	},
+	footerItemLogoText: {
+		display: "inline-block",
+		color: "#586069",
+		fontSize: "13px",
+		cursor: "pointer",
+	},
+	footerItem: {
+		fontSize: "13px",
+		color: "#586069",
+		cursor: "pointer",
+		"&:hover": {
+			color: "#0366d6",
+			textDecoration: "underline",
+			textDecorationColor: "#0366d6",
+		},
+	},
 	gridExplore: {},
 }));
 
@@ -892,7 +1037,145 @@ function Dashboard() {
 							lg={6}
 							xl={6}
 							className={classes.gridMain}
-						></Grid>
+						>
+							<Box className={classes.mainContainer}>
+								<Typography className={classes.mainHeader}>
+									Discover interesting projects and people to populate your
+									personal news feed.
+								</Typography>
+								<Typography className={classes.mainText}>
+									Your news feed helps you keep up with recent activity on
+									repositories you{" "}
+									<Link to="/" className={classes.mainTextLink}>
+										watch
+									</Link>{" "}
+									and people you{" "}
+									<Link to="/" className={classes.mainTextLink}>
+										follow
+									</Link>
+									.
+								</Typography>
+								<Button variant="outlined" className={classes.mainButton}>
+									Explore GitHub
+								</Button>
+							</Box>
+							<Box className={classes.mainUnder}>
+								<Box className={classes.mainUnderTip}>
+									<Typography className={classes.mainUnderTipText}>
+										<Box className={classes.mainUnderTipIcon}>
+											<i class="far fa-lightbulb"></i>
+										</Box>
+										<b>ProTip!</b> The feed shows you events from people you{" "}
+										<Link to="/" className={classes.mainUnderTipLink}>
+											follow
+										</Link>{" "}
+										and repositories you{" "}
+										<Link to="/" className={classes.mainUnderTipLink}>
+											watch
+										</Link>
+										.
+									</Typography>
+								</Box>
+								<Box className={classes.mainUnderSubscribe}>
+									<Link to="/">
+										<Typography className={classes.mainUnderSubscribeText}>
+											<Box className={classes.mainUnderSubscribeIcon}>
+												<i class="fas fa-rss"></i>
+											</Box>
+											Subscribe to your news feed
+										</Typography>
+									</Link>
+								</Box>
+							</Box>
+							<Box className={classes.mainFooter}>
+								<Grid container>
+									<Grid
+										item
+										md={6}
+										lg={6}
+										xl={6}
+										className={classes.footerGridLogo}
+									>
+										<Box>
+											<Link to="/" className={classes.footerItemLogo}>
+												<Box className={classes.footerItemLogoIcon}>
+													<i class="fab fa-github"></i>
+												</Box>
+												<Typography className={classes.footerItemLogoText}>
+													© 2021 GitHub, Inc.
+												</Typography>
+											</Link>
+										</Box>
+									</Grid>
+									<Grid item xs={4} sm={4} md={2} lg={2} xl={2}>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Blog
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												About
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Shop
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Contact GitHub
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Pricing
+											</Link>
+										</Box>
+									</Grid>
+									<Grid item xs={4} sm={4} md={2} lg={2} xl={2}>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												API
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Training
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Status
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Security
+											</Link>
+										</Box>
+									</Grid>
+									<Grid item xs={4} sm={4} md={2} lg={2} xl={2}>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Terms
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Privacy
+											</Link>
+										</Box>
+										<Box>
+											<Link to="/" className={classes.footerItem}>
+												Docs
+											</Link>
+										</Box>
+									</Grid>
+								</Grid>
+							</Box>
+						</Grid>
 						<Grid item md={3} lg={3} className={classes.gridExplore}></Grid>
 					</Grid>
 				</ThemeProvider>
