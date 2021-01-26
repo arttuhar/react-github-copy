@@ -1102,7 +1102,7 @@ function Dashboard() {
 													<i class="fab fa-github"></i>
 												</Box>
 												<Typography className={classes.footerItemLogoText}>
-													© 2021 GitHub, Inc.
+													© 2021 Arttu H.
 												</Typography>
 											</Link>
 										</Box>
