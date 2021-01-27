@@ -221,12 +221,7 @@ const useStyles = makeStyles(theme => ({
 			boxShadow: "0 1px 0 rgba(27, 31, 35, 0.1)",
 		},
 	},
-	gridMain: {
-		paddingTop: "32px",
-		[theme.breakpoints.down(768)]: {
-			paddingTop: 0,
-		},
-	},
+	gridMain: {},
 	mainContainer: {
 		backgroundColor: "#fff",
 		border: "1px solid #eaecef",
@@ -234,8 +229,13 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: "16px",
 		marginRight: "16px",
 		padding: "32px",
+		marginTop: "32px",
 		[theme.breakpoints.down(768)]: {
 			marginTop: 0,
+		},
+		[theme.breakpoints.up(960)]: {
+			marginLeft: "32px",
+			marginRight: "32px",
 		},
 	},
 	mainHeader: {
@@ -362,6 +362,72 @@ const useStyles = makeStyles(theme => ({
 		},
 	},
 	gridExplore: {},
+	exploreContainer: {
+		marginTop: "32px",
+		marginRight: "32px",
+	},
+	exploreHeader: {
+		fontSize: "14px",
+		fontWeight: "bold",
+	},
+	exploreItem: {
+		marginTop: "16px",
+		marginBottom: "8px",
+	},
+	exploreItemHeader: {
+		fontSize: "13px",
+		fontWeight: "bold",
+		color: "#24292e",
+		cursor: "pointer",
+		"&:hover": {
+			color: "#0366d6",
+			textDecoration: "none",
+		},
+	},
+	exploreItemText: {
+		fontSize: "13px",
+		color: "#586069",
+		paddingTop: "4px",
+	},
+	exploreItemFooter: {
+		padding: 0,
+		marginTop: "12px",
+		cursor: "default",
+		"&:hover": {
+			backgroundColor: "#f6f8fa",
+		},
+	},
+	exploreItemFooterLanguageIcon: {
+		fontSize: "12px",
+		color: "#f1e05a",
+		marginRight: "4px",
+	},
+	exploreItemFooterLanguageText: {
+		fontSize: "12px",
+		color: "#586069",
+		marginRight: "16px",
+	},
+	exploreItemFooterStarIcon: {
+		fontSize: "14px",
+		color: "#586069",
+		marginRight: "4px",
+	},
+	exploreItemFooterStarNumber: {
+		fontSize: "13px",
+		color: "#586069",
+	},
+	exploreMore: {
+		marginTop: "16px",
+	},
+	exploreMoreLink: {
+		fontSize: "12px",
+		color: "#586069",
+		cursor: "pointer",
+		"&:hover": {
+			color: "#0366d6",
+			textDecoration: "none",
+		},
+	},
 }));
 
 const theme = createMuiTheme({
@@ -1176,7 +1242,101 @@ function Dashboard() {
 								</Grid>
 							</Box>
 						</Grid>
-						<Grid item md={3} lg={3} className={classes.gridExplore}></Grid>
+						<Grid item md={3} lg={3} className={classes.gridExplore}>
+							<Box className={classes.exploreContainer}>
+								<Typography className={classes.exploreHeader}>
+									Explore repositories
+								</Typography>
+								<Box className={classes.exploreItem}>
+									<Link to="/" className={classes.exploreItemHeader}>
+										username/repository
+									</Link>
+									<Typography className={classes.exploreItemText}>
+										This is placeholder description for repository.
+									</Typography>
+									<MenuItem
+										className={classes.exploreItemFooter}
+										disableRipple={true}
+									>
+										<Box className={classes.exploreItemFooterLanguageIcon}>
+											<i class="fas fa-circle"></i>
+										</Box>
+										<Typography
+											className={classes.exploreItemFooterLanguageText}
+										>
+											JavaScript
+										</Typography>
+										<Box className={classes.exploreItemFooterStarIcon}>
+											<i class="far fa-star"></i>
+										</Box>
+										<Typography className={classes.exploreItemFooterStarNumber}>
+											32
+										</Typography>
+									</MenuItem>
+								</Box>
+								<Divider />
+								<Box className={classes.exploreItem}>
+									<Link to="/" className={classes.exploreItemHeader}>
+										username/repository
+									</Link>
+									<Typography className={classes.exploreItemText}>
+										This is placeholder description for repository.
+									</Typography>
+									<MenuItem
+										className={classes.exploreItemFooter}
+										disableRipple={true}
+									>
+										<Box className={classes.exploreItemFooterLanguageIcon}>
+											<i class="fas fa-circle"></i>
+										</Box>
+										<Typography
+											className={classes.exploreItemFooterLanguageText}
+										>
+											JavaScript
+										</Typography>
+										<Box className={classes.exploreItemFooterStarIcon}>
+											<i class="far fa-star"></i>
+										</Box>
+										<Typography className={classes.exploreItemFooterStarNumber}>
+											32
+										</Typography>
+									</MenuItem>
+								</Box>
+								<Divider />
+								<Box className={classes.exploreItem}>
+									<Link to="/" className={classes.exploreItemHeader}>
+										username/repository
+									</Link>
+									<Typography className={classes.exploreItemText}>
+										This is placeholder description for repository.
+									</Typography>
+									<MenuItem
+										className={classes.exploreItemFooter}
+										disableRipple={true}
+									>
+										<Box className={classes.exploreItemFooterLanguageIcon}>
+											<i class="fas fa-circle"></i>
+										</Box>
+										<Typography
+											className={classes.exploreItemFooterLanguageText}
+										>
+											JavaScript
+										</Typography>
+										<Box className={classes.exploreItemFooterStarIcon}>
+											<i class="far fa-star"></i>
+										</Box>
+										<Typography className={classes.exploreItemFooterStarNumber}>
+											32
+										</Typography>
+									</MenuItem>
+								</Box>
+								<Box className={classes.exploreMore}>
+									<Link to="/" className={classes.exploreMoreLink}>
+										Explore more →
+									</Link>
+								</Box>
+							</Box>
+						</Grid>
 					</Grid>
 				</ThemeProvider>
 			</Box>
