@@ -278,6 +278,10 @@ const useStyles = makeStyles(theme => ({
 	mainUnder: {
 		padding: "20px",
 		marginBottom: "300px",
+		[theme.breakpoints.up(960)]: {
+			paddingLeft: "36px",
+			paddingRight: "36px",
+		},
 	},
 	mainUnderTip: {
 		display: "flex",
@@ -361,7 +365,11 @@ const useStyles = makeStyles(theme => ({
 			textDecorationColor: "#0366d6",
 		},
 	},
-	gridExplore: {},
+	gridExplore: {
+		[theme.breakpoints.down(960)]: {
+			display: "none",
+		},
+	},
 	exploreContainer: {
 		marginTop: "32px",
 		marginRight: "32px",
