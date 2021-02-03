@@ -288,6 +288,18 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: "24px",
 		transition: "none",
 	},
+	ignoreMenuList: {
+		paddingTop: 0,
+		paddingBottom: 0,
+	},
+	ignoreMenuItem: {
+		fontSize: "13px",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#0366d6",
+			color: "#fff",
+		},
+	},
 	licenceButton: {
 		backgroundColor: "#fafbfc",
 		border: "1px solid #e1e4e8",
@@ -298,6 +310,18 @@ const useStyles = makeStyles(theme => ({
 		marginTop: "12px",
 		marginLeft: "24px",
 		transition: "none",
+	},
+	licenceMenuList: {
+		paddingTop: 0,
+		paddingBottom: 0,
+	},
+	licenceMenuItem: {
+		fontSize: "13px",
+		transition: "none",
+		"&:hover": {
+			backgroundColor: "#0366d6",
+			color: "#fff",
+		},
 	},
 	buttonValue: {
 		paddingLeft: "4px",
@@ -360,6 +384,8 @@ function NewRepository() {
 	const [hideIgnore, setHideIgnore] = React.useState(null);
 	const [hideLicence, setHideLicence] = React.useState(null);
 	const [repositoryName, setRepositoryName] = React.useState("");
+	const [anchorElIgnore, setAnchorElIgnore] = React.useState(null);
+	const [anchorElLicence, setAnchorElLicence] = React.useState(null);
 
 	// Open and close repository owner selection menu
 
@@ -395,10 +421,30 @@ function NewRepository() {
 		setHideLicence(prev => !prev);
 	};
 
-	// Check repository name
+	// Check repository name value
 
 	const handleRepositoryName = event => {
 		setRepositoryName(event.target.value);
+	};
+
+	// Open and close ignore menu
+
+	const handleClickIgnore = event => {
+		setAnchorElIgnore(event.currentTarget);
+	};
+
+	const handleCloseIgnore = () => {
+		setAnchorElIgnore(null);
+	};
+
+	// Open and close licence menu
+
+	const handleClickLicence = event => {
+		setAnchorElLicence(event.currentTarget);
+	};
+
+	const handleCloseLicence = () => {
+		setAnchorElLicence(null);
 	};
 
 	return (
@@ -660,7 +706,13 @@ function NewRepository() {
 								</Link>
 							</Typography>
 							{hideIgnore && (
-								<Button className={classes.ignoreButton} disableRipple={true}>
+								<Button
+									className={classes.ignoreButton}
+									disableRipple={true}
+									aria-controls="ignoreMenu"
+									aria-haspopup="true"
+									onClick={handleClickIgnore}
+								>
 									.gitignore template:
 									<span className={classes.buttonValue}>value</span>
 									<Box className={classes.buttonIcon}>
@@ -668,6 +720,1050 @@ function NewRepository() {
 									</Box>
 								</Button>
 							)}
+							<Menu
+								className={classes.ignoreMenu}
+								id="ignoreMenu"
+								transitionDuration={0}
+								anchorEl={anchorElIgnore}
+								open={Boolean(anchorElIgnore)}
+								onClose={handleCloseIgnore}
+								classes={{ list: classes.ignoreMenuList }}
+								PaperProps={{
+									style: {
+										backgroundColor: "#fff",
+										marginTop: "36px",
+										width: "300px",
+										boxShadow: "0 8px 24px rgba(149,157,165,0.2)",
+										border: "1px solid #e1e4e8",
+										borderRadius: "6px",
+										height: "160px",
+									},
+								}}
+							>
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									None
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Actionscript
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Ada
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Agda
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Android
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									AppEngine
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									AppceleratorTitanium
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ArchLinuxPackages
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Autotools
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									C
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									C++
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CFWheels
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CMake
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CUDA
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CakePHP
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ChefCookbook
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Clojure
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CodeIgniter
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CommonLisp
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Composer
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Concrete5
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Coq
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									CraftCMS
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									D
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									DM
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Dart
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Delphi
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Drupal
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									EPiServer
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Eagle
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Elisp
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Elixir
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Elm
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Erlang
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ExpressionEngine
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ExtJs
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Fancy
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Finale
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ForceDotCom
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Fortran
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									FuelPHP
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									GWT
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									GitBook
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Go
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Godot
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Gradle
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Grails
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Haskell
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									IGORPro
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Idris
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									JENKINS_HOME
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Java
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Jboss
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Jekyll
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Joomla
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Julia
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									KiCAD
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Kohana
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Kotlin
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									LabVIEW
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Laravel
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Leiningen
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									LemonStand
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Lilypond
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Lithium
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Lua
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Magento
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Maven
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Mercury
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									MetaProgrammingSystem
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Nim
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Node
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									OCaml
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Objective-C
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Opa
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									OracleForms
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Packer
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Perl
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Perl6
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Phalcon
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									PlayFramework
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Plone
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Prestashop
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Processing
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									PureScript
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Python
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Qooxdoo
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Qt
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									R
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ROS
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Rails
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									RhodesRhomobile
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Ruby
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Rust
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									SCons
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Sass
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Scala
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Scheme
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Scrivener
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Sdcc
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									SeamGen
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									SketchUp
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Smalltalk
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									SugarCRM
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Swift
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Symfony
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									SymphonyCMS
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									TeX
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Terraform
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Textpattern
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									TurboGears2
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Typo3
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Umbraco
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Unity
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									UnrealEngine
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									VVVV
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									VisualStudio
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Waf
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									WordPress
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Xojo
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Yeoman
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Yii
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									ZendFramework
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									Zephir
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									gcov
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									nanoc
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									opencart
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.ignoreMenuItem}
+									disableRipple={true}
+									onClick={handleCloseIgnore}
+								>
+									stella
+								</MenuItem>
+							</Menu>
 						</Box>
 						<Box className={classes.checkboxLicenceContainer}>
 							<FormControlLabel
@@ -700,13 +1796,151 @@ function NewRepository() {
 								</Link>
 							</Typography>
 							{hideLicence && (
-								<Button className={classes.licenceButton} disableRipple={true}>
+								<Button
+									className={classes.licenceButton}
+									disableRipple={true}
+									aria-controls="licenceMenu"
+									aria-haspopup="true"
+									onClick={handleClickLicence}
+								>
 									Licence: <span className={classes.buttonValue}>value</span>
 									<Box className={classes.buttonIcon}>
 										<i class="fas fa-caret-down"></i>
 									</Box>
 								</Button>
 							)}
+							<Menu
+								className={classes.licenceMenu}
+								id="licenceMenu"
+								transitionDuration={0}
+								anchorEl={anchorElLicence}
+								open={Boolean(anchorElLicence)}
+								onClose={handleCloseLicence}
+								classes={{ list: classes.licenceMenuList }}
+								PaperProps={{
+									style: {
+										backgroundColor: "#fff",
+										marginTop: "36px",
+										width: "300px",
+										boxShadow: "0 8px 24px rgba(149,157,165,0.2)",
+										border: "1px solid #e1e4e8",
+										borderRadius: "6px",
+										height: "100px",
+									},
+								}}
+							>
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									None
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									Apache Licence 2.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									GNU General Public Licence v3.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									MIT Licence
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									BSD 2-Clause "Simplified" Licence
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									BSD 3-Clause "New" or "Revised" Licence
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									Boost Software Licence 1.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									Creative Commons Zero v1.0 Universal
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									Eclipse Public Licence 2.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									GNU Affero General Public Licence v3.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									GNU General Public Licence v2.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									GNU Lesser General Public Licence v2.1
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									Mozilla Public Licence 2.0
+								</MenuItem>
+								<Divider />
+								<MenuItem
+									className={classes.licenceMenuItem}
+									disableRipple={true}
+									onClick={handleCloseLicence}
+								>
+									The Unlicence
+								</MenuItem>
+							</Menu>
 						</Box>
 						{hideReadme && (
 							<Typography className={classes.checkboxesInfoText}>
