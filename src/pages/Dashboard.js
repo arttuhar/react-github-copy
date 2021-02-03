@@ -491,6 +491,7 @@ function Dashboard() {
 										variant="outlined"
 										className={classes.repositoriesNewButton}
 										disableRipple={true}
+										href="/newrepository"
 									>
 										<Box className={classes.repositoriesNewButtonIcon}>
 											<i class="far fa-bookmark"></i>

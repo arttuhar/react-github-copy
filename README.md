@@ -13,8 +13,9 @@ Main focus of this project is to make it look same as much as possible as GitHub
 
 ## Technologies
 
-- React
-- Material UI
+- [React](https://reactjs.org)
+- [Material-UI](https://material-ui.com)
+- [clsx](https://www.npmjs.com/package/clsx)
 
 ## Project status
 
@@ -22,8 +23,9 @@ Project is currently in development.
 
 Current development path:
 
-- Navigation bar (small fixes needed)
-- Dashboard (current)
+- Navigation bar
+- Dashboard
+- New Repository (current)
 
 ## Setup
 
