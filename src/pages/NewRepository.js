@@ -15,6 +15,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import Paper from "@material-ui/core/Paper";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles(theme => ({
 	newRepositoryContainer: {
@@ -237,6 +239,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	checkboxReadmeContainer: {
 		marginBottom: "12px",
+		marginTop: "8px",
 	},
 	checkboxIgnoreContainer: {
 		marginBottom: "12px",
@@ -295,6 +298,7 @@ const useStyles = makeStyles(theme => ({
 	ignoreMenuItem: {
 		fontSize: "13px",
 		transition: "none",
+
 		"&:hover": {
 			backgroundColor: "#0366d6",
 			color: "#fff",
@@ -373,6 +377,71 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: "#94d3a2",
 		border: "1px solid rgba(27, 31, 35, 0.1)",
 		color: "#fff",
+	},
+
+	ignoreHeader: {
+		position: "sticky",
+		top: 0,
+		backgroundColor: "#fff",
+		zIndex: 2,
+	},
+	ignoreHeaderContent: {
+		width: "100%",
+		borderRadius: 0,
+		boxShadow: "none",
+	},
+	ignoreHeaderTextContainer: {
+		backgroundColor: "#f6f8fa",
+		padding: "8px",
+	},
+	ignoreHeaderText: {
+		fontSize: "12px",
+		fontWeight: "bold",
+	},
+	ignoreHeaderInputContainer: {
+		width: "100%",
+		padding: "12px",
+	},
+	ignoreHeaderInput: {
+		height: "32px",
+		width: "100%",
+		border: "1px solid #e1e4e8",
+		borderRadius: "6px",
+		paddingLeft: "4px",
+		"& ::-webkit-input-placeholder": {
+			fontSize: "14px",
+			opacity: 1,
+			color: "#586069",
+		},
+	},
+	licenceHeader: {
+		position: "sticky",
+		backgroundColor: "#fff",
+		top: 0,
+		zIndex: 2,
+	},
+	licenceHeaderContent: {
+		width: "100%",
+		borderRadius: 0,
+		boxShadow: "none",
+	},
+	licenceHeaderTextContainer: {
+		backgroundColor: "#f6f8fa",
+		padding: "8px",
+		display: "flex",
+	},
+	licenceHeaderText: {
+		fontSize: "12px",
+		fontWeight: "bold",
+		flex: 1,
+	},
+	licenceHeaderIcon: {
+		color: "#959da5",
+		marginRight: "4px",
+		cursor: "pointer",
+		"&:hover": {
+			color: "#000",
+		},
 	},
 }));
 
@@ -670,7 +739,10 @@ function NewRepository() {
 							/>
 							<Typography className={classes.checkboxText}>
 								This is where you can write a long description for your project.{" "}
-								<Link to="/" className={classes.checkboxTextLink}>
+								<Link
+									href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes"
+									className={classes.checkboxTextLink}
+								>
 									Learn more.
 								</Link>
 							</Typography>
@@ -701,7 +773,10 @@ function NewRepository() {
 							/>
 							<Typography className={classes.checkboxText}>
 								Choose which files not to track from a list of templates.{" "}
-								<Link to="/" className={classes.checkboxTextLink}>
+								<Link
+									href="https://docs.github.com/en/github/using-git/ignoring-files"
+									className={classes.checkboxTextLink}
+								>
 									Learn more.
 								</Link>
 							</Typography>
@@ -726,20 +801,40 @@ function NewRepository() {
 								transitionDuration={0}
 								anchorEl={anchorElIgnore}
 								open={Boolean(anchorElIgnore)}
+								keepMounted
 								onClose={handleCloseIgnore}
 								classes={{ list: classes.ignoreMenuList }}
 								PaperProps={{
 									style: {
 										backgroundColor: "#fff",
-										marginTop: "36px",
+										marginTop: "64px",
 										width: "300px",
 										boxShadow: "0 8px 24px rgba(149,157,165,0.2)",
 										border: "1px solid #e1e4e8",
 										borderRadius: "6px",
-										height: "160px",
+										maxHeight: "220px",
 									},
 								}}
 							>
+								<Box className={classes.ignoreHeader}>
+									<Paper className={classes.ignoreHeaderContent}>
+										<Box className={classes.ignoreHeaderTextContainer}>
+											<Typography className={classes.ignoreHeaderText}>
+												.gitignore template
+											</Typography>
+										</Box>
+										<Divider />
+										<Box className={classes.ignoreHeaderInputContainer}>
+											<Input
+												className={classes.ignoreHeaderInput}
+												disableUnderline={true}
+												placeholder="Filter ignores..."
+												type="text"
+											/>
+										</Box>
+									</Paper>
+									<Divider />
+								</Box>
 								<MenuItem
 									className={classes.ignoreMenuItem}
 									disableRipple={true}
@@ -1791,7 +1886,10 @@ function NewRepository() {
 							/>
 							<Typography className={classes.checkboxText}>
 								Licence tells others what they can and can't do with your code.{" "}
-								<Link to="/" className={classes.checkboxTextLink}>
+								<Link
+									href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository"
+									className={classes.checkboxTextLink}
+								>
 									Learn more.
 								</Link>
 							</Typography>
@@ -1825,10 +1923,26 @@ function NewRepository() {
 										boxShadow: "0 8px 24px rgba(149,157,165,0.2)",
 										border: "1px solid #e1e4e8",
 										borderRadius: "6px",
-										height: "100px",
+										maxHeight: "200px",
 									},
 								}}
 							>
+								<Box className={classes.licenceHeader}>
+									<Paper className={classes.licenceHeaderContent}>
+										<Box className={classes.licenceHeaderTextContainer}>
+											<Typography className={classes.licenceHeaderText}>
+												Licence
+											</Typography>
+											<Box
+												className={classes.licenceHeaderIcon}
+												onClick={handleCloseLicence}
+											>
+												<i class="fas fa-times"></i>
+											</Box>
+										</Box>
+									</Paper>
+									<Divider />
+								</Box>
 								<MenuItem
 									className={classes.licenceMenuItem}
 									disableRipple={true}
@@ -1995,6 +2109,7 @@ function NewRepository() {
 					</Box>
 				</Box>
 			</Box>
+			<Footer />
 		</React.Fragment>
 	);
 }
