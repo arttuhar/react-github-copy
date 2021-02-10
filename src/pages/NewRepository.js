@@ -163,6 +163,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	privacyRadio: {
 		"&:hover": {
+			cursor: "default",
 			backgroundColor: "transparent",
 		},
 	},
@@ -523,7 +524,7 @@ function NewRepository() {
 					<Typography className={classes.headerTextSmall}>
 						A repository contains all project files, including the revision
 						history. Already have a project repository elsewhere?{" "}
-						<Link to="/" className={classes.headerImportLink}>
+						<Link href="/importrepository" className={classes.headerImportLink}>
 							Import a repository.
 						</Link>
 					</Typography>

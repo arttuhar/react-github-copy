@@ -368,6 +368,13 @@ const useStyles = makeStyles(theme => ({
 			color: "#fff",
 		},
 	},
+	menuNewItemLink: {
+		color: "#24292e",
+		"&:hover": {
+			color: "#fff",
+			textDecoration: "none",
+		},
+	},
 
 	// Navigation bar profile menu
 	navbarMenuProfile: {
@@ -1061,7 +1068,7 @@ function Navbar() {
 							</MenuItem>
 						</Menu>
 					</Box>
-					<Link to="/" className={classes.navbarIcon}>
+					<Link href="/" className={classes.navbarIcon}>
 						<i class="fab fa-github"></i>
 					</Link>
 					<Box className={classes.empty}></Box>
@@ -1212,7 +1219,7 @@ function Navbar() {
 					</Box>
 					<Box className={classes.navbarLinks}>
 						<Link to="/" underline="none" className={classes.linksItem}>
-							Pulls
+							Pull requests
 						</Link>
 						<Link to="/" underline="none" className={classes.linksItem}>
 							Issues
@@ -1264,14 +1271,21 @@ function Navbar() {
 								disableRipple={true}
 								onClick={handleCloseNew}
 							>
-								New repository
+								<Link href="/newrepository" className={classes.menuNewItemLink}>
+									New repository
+								</Link>
 							</MenuItem>
 							<MenuItem
 								className={classes.menuNewItem}
 								disableRipple={true}
 								onClick={handleCloseNew}
 							>
-								Import repository
+								<Link
+									href="/importrepository"
+									className={classes.menuNewItemLink}
+								>
+									Import repository
+								</Link>
 							</MenuItem>
 							<MenuItem
 								className={classes.menuNewItem}

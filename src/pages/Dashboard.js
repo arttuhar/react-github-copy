@@ -108,6 +108,10 @@ const useStyles = makeStyles(theme => ({
 			letterSpacing: 0,
 			opacity: 1,
 		},
+		"&.Mui-focused": {
+			borderColor: "#0366d6",
+			boxShadow: "0 0 0 3px rgba(3, 102, 214, 0.3)",
+		},
 	},
 	repositoriesList: {
 		marginTop: "16px",
