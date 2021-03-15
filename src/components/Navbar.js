@@ -1218,7 +1218,11 @@ function Navbar() {
 						</Menu>
 					</Box>
 					<Box className={classes.navbarLinks}>
-						<Link to="/" underline="none" className={classes.linksItem}>
+						<Link
+							href="/pullrequests"
+							underline="none"
+							className={classes.linksItem}
+						>
 							Pull requests
 						</Link>
 						<Link to="/" underline="none" className={classes.linksItem}>

@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import NewRepository from "./pages/NewRepository";
 import ImportRepository from "./pages/ImportRepository";
+import PullRequests from "./pages/PullRequests";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Navbar />
 				<Switch>
 					<Route path="/" exact component={Dashboard} />
+					<Route path="/pullrequests" component={PullRequests} />
 					<Route path="/newrepository" component={NewRepository} />
 					<Route path="/importrepository" component={ImportRepository} />
 				</Switch>

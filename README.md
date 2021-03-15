@@ -4,6 +4,7 @@
 
 - [General info](#general-info)
 - [Technologies](#technologies)
+- [Demo](#demo)
 - [Project status](#project-status)
 - [Setup](#setup)
 
@@ -16,6 +17,8 @@ Main focus of this project is to make it look same as much as possible as GitHub
 - [React](https://reactjs.org)
 - [Material-UI](https://material-ui.com)
 - [clsx](https://www.npmjs.com/package/clsx)
+
+## Demo
 
 ## Project status
 

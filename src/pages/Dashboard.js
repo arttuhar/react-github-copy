@@ -1134,7 +1134,11 @@ function Dashboard() {
 									</Link>
 									.
 								</Typography>
-								<Button variant="outlined" className={classes.mainButton}>
+								<Button
+									variant="outlined"
+									className={classes.mainButton}
+									disableRipple={true}
+								>
 									Explore GitHub
 								</Button>
 							</Box>
